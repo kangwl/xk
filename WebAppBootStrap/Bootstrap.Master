@@ -25,6 +25,10 @@
         #page_loading div { width: 1px; height: 2px; background: #337AB7;}
         /*页面加载提示 END */
     </style>
+    <style>
+         html,body{background:#f1f1f1 url(data:image/gif;base64,R0lGODlhBgAGAIAAAPPz8+bm5iH5BAAAAAAALAAAAAAGAAYAAAIJRI52aroY2lsFADs=); }
+         /*body{ background-color: #A9A9A9}*/
+    </style>
     <script>
         $(function () {
             page_loading_process(100, function () {

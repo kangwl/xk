@@ -79,9 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
     <Content Include="Account\_Login.html" />
     <Content Include="Account\Logout.aspx" />
-    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\_Regist.html" />
     <Content Include="Content\bootstrap\datepicker\css\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap\datepicker\css\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap\datepicker\css\bootstrap-datepicker.standalone.css" />
