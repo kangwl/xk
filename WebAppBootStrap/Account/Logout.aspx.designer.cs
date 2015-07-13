@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Account {
+namespace WebAppBS.Account {
 
 
     public partial class Logout {

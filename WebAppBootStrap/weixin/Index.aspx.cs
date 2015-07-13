@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using XK.Common;
 using XK.WeiXin;
 
-namespace WebAppBootStrap.weixin {
+namespace WebAppBS.weixin {
     public partial class Index : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
             //Log log=new Log();

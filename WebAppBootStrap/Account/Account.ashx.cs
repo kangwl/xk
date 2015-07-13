@@ -7,7 +7,7 @@ using System.Web;
 using XK.Authentication;
 using XK.Bll;
 
-namespace WebAppBootStrap.Account {
+namespace WebAppBS.Account {
     /// <summary>
     /// Account 的摘要说明
     /// </summary>

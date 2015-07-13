@@ -1,4 +1,4 @@
-﻿namespace WebAppBootStrap.Control.table.bsTableCore {
+﻿namespace WebAppBS.Control.table.bsTableCore {
     public class BSTableField {
 
         public string DataField { get; set; }

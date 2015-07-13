@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using XK.Authentication;
 using XK.Bll;
 
-namespace WebAppBootStrap.Account {
+namespace WebAppBS.Account {
     public partial class Login : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
 

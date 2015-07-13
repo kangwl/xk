@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebAppBootStrap {
+namespace WebAppBS {
     public partial class Bootstrap : System.Web.UI.MasterPage {
         protected void Page_Load(object sender, EventArgs e) {
 

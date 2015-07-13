@@ -6,7 +6,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Web;
 using Microsoft.Win32;
 
-namespace WebAppBootStrap.ViewHandler {
+namespace WebAppBS.ViewHandler {
     /// <summary>
     /// User 的摘要说明
     /// </summary>

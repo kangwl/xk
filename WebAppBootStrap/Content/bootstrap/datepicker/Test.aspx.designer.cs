@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Content.bootstrap.datepicker {
+namespace WebAppBS.Content.bootstrap.datepicker {
     
     
     public partial class Test {

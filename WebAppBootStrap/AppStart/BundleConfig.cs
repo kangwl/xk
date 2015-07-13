@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 
-namespace WebAppBootStrap.AppStart {
+namespace WebAppBS.AppStart {
     public class BundleConfig {
 
         public static void BundleResources(BundleCollection bundleCollection) {

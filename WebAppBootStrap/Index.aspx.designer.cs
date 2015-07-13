@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap {
+namespace WebAppBS {
     
     
     public partial class Index {

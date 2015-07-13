@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.View.User {
+namespace WebAppBS.View.User {
     
     
     public partial class List {
@@ -19,6 +19,6 @@ namespace WebAppBootStrap.View.User {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::WebAppBootStrap.Control.table.BSTable_Page1 BSTable_Page;
+        protected global::WebAppBS.Control.table.BSTable_Page1 BSTable_Page;
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using WebAppBootStrap.Control.table.bsTableCore;
+using WebAppBS.Control.table.bsTableCore;
 
-namespace WebAppBootStrap.Control.table {
+namespace WebAppBS.Control.table {
     public partial class BSTable_Page1 : System.Web.UI.UserControl, bsTableCore.IBaseTable_Page {
 
         public BSTable_Page1() { }

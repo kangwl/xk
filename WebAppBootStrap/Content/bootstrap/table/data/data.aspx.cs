@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebAppBootStrap.Content.bootstrap.table.data {
+namespace WebAppBS.Content.bootstrap.table.data {
     public partial class data : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
             if (Request.QueryString["act"] == "products") {

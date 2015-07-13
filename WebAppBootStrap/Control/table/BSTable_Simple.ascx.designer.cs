@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Control.table {
+namespace WebAppBS.Control.table {
     
     
     public partial class BSTable_Simple {

@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.weixin {
+namespace WebAppBS.weixin {
     
     
     public partial class Index {

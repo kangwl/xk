@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Content.popup {
+namespace WebAppBS.Content.popup {
     
     
     public partial class Test {

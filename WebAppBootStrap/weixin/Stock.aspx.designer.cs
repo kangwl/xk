@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.weixin {
+namespace WebAppBS.weixin {
 
 
     public partial class Stock {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Web.UI;
-using WebAppBootStrap.Control.table.bsTableCore;
+using WebAppBS.Control.table.bsTableCore;
 
-namespace WebAppBootStrap.Control.table {
+namespace WebAppBS.Control.table {
     public partial class BSTable_Simple : System.Web.UI.UserControl,table.bsTableCore.IBaseTable {
         public BSTable_Simple() {
             

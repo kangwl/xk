@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Account {
+namespace WebAppBS.Account {
     
     
     public partial class Login {

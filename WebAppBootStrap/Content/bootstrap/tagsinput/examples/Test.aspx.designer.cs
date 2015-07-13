@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Content.bootstrap.tagsinput.examples {
+namespace WebAppBS.Content.bootstrap.tagsinput.examples {
     
     
     public partial class Test {

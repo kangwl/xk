@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WebAppBootStrap.Control.table.bsTableCore {
+namespace WebAppBS.Control.table.bsTableCore {
     public interface IBaseTable {
         /// <summary>
         /// 生成table的ID

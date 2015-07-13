@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Content.bootstrap.table.data {
+namespace WebAppBS.Content.bootstrap.table.data {
     
     
     public partial class data {

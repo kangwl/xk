@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Content.bootstrap.table {
+namespace WebAppBS.Content.bootstrap.table {
     
     
     public partial class Test {

@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebAppBootStrap.Control.table {
+namespace WebAppBS.Control.table {
     
     
     public partial class BSTable_Simple1 {
@@ -19,6 +19,6 @@ namespace WebAppBootStrap.Control.table {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::WebAppBootStrap.Control.table.BSTable_Simple BSTable_Simple;
+        protected global::WebAppBS.Control.table.BSTable_Simple BSTable_Simple;
     }
 }

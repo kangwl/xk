@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace WebAppBootStrap.Control.table.bsTableCore {
+namespace WebAppBS.Control.table.bsTableCore {
     /// <summary>
     ///  bs table 模型
     /// </summary>
