@@ -62,3 +62,6 @@
 /.localhistory/XK.WeiXin
 /.localhistory/ConsoleAppTest
 /MyBootstrapWeb.v11.suo
+/*.suo
+/.localhistory/WebAppBootStrap
+/WebAppBootStrap/*.user
