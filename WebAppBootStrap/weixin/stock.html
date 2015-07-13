@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>同花顺个股行情</title>
+    <!-- canvas resources -->
+    <link rel="stylesheet" href="http://s.thsi.cn/combo?css/stockpage/&new/common.20130220.css" type="text/css">
+    <link rel="stylesheet" href="http://s.thsi.cn/combo?css/stockpage/&new/flot_home.20130204.min.css&home.min.css" type="text/css">
+
+    <style>
+        .hexm-minus-bg {
+            background: green;
+            color: #FFFFFF;
+        }
+
+        .hexm-plus-bg {
+            background: #c00c00;
+            color: #FFFFFF;
+        }
+
+        .hexm-black-bg {
+            background: #777;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body style="line-height: 1.5; font-family: Tahoma;background:#fafafa;" class="stockpick_mainbody all_height">
+
+    <div class="fl black_price" id="hexm_curPrice_wrap">
+        <span class="price" style="height: 36px; line-height: 36px; margin-top: 19px;" id="hexm_curPrice">--</span>
+        <div class="price_details">
+            <span id="hexm_float_price">--</span>
+            <span id="hexm_float_rate">--%</span>
+        </div>
+    </div>
+
+    <div class="hexm_trading">
+        <ul class="new_trading fl">
+            <li>
+                <span class="kp">今开：<strong class="plus">--</strong></span>
+                <span class="zs">昨收：<strong class="plus">--</strong></span>
+                <span class="trading_w contract_amount">成交额：<strong>--</strong></span>
+                <span class="hs">换手：<strong>--%</strong></span>
+            </li>
+            <li>
+                <span class="zg">最高：<strong class="plus">--</strong></span>
+                <span class="zd">最低：<strong class="plus">--</strong></span>
+                <span class="trading_w trading_volume">成交量：<strong>--</strong></span>
+                <span class="zf">振幅：<strong>--%</strong></span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- resources -->
+    <script src="http://s.thsi.cn/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://s.thsi.cn/combo?js/webHQ/resources/require.min.js&js/webHQ/pcRealHead/pRealhead.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var timer = setInterval(function() {
+                if (window.hx_hq_canvas) {
+                    clearInterval(timer);
+                    var code = window.location.href.split('#')[1];
+                    window.hx_hq_canvas.initShow(code);
+                }
+            }, 0)
+
+        })
+    </script>
+</body>
+</html>

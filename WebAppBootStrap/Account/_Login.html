@@ -1,0 +1,104 @@
+﻿<div class="row" style="margin-top: 100px">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span class="glyphicon glyphicon-log-in"></span> 登录
+                    <div class="pull-right">
+                        <label><small id="loginMsg"></small></label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon">
+                            登录名
+                        </label>
+                        <input type="text" class="form-control" id="txt_UserID" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon">
+                            <span style="visibility:hidden">密</span>密码
+                        </label>
+                        <input type="password" id="txt_Pass" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <button id="btn_login" type="button" class="btn btn-primary pull-right">登录</button>
+                    <div class="pull-right" style="margin-right: 20px">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="ck_login_auto" />
+                                <small>下次自动登录</small>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+</div>
+
+<script>
+    $("#btn_login").on("click", function(e) {
+        var userid = $.trim($("#txt_UserID").val());
+        var password = $.trim($("#txt_Pass").val());
+        if (userid === "") {
+            $("#txt_UserID").focus();
+            writeMsg("请输入登录名");
+            return false;
+        }
+        if (password === "") {
+            $("#txt_Pass").focus();
+            writeMsg("请输入密码");
+            return false;
+        }
+        var remember = $("#ck_login_auto").prop("checked");
+        $.ajax({
+            type: "post",
+            url: "/Account/Account.ashx",
+            data: { act: "login", uid: userid, pwd: password,rem:remember },
+            error: function() {
+                writeMsg("系统出错");
+            },
+            beforeSend: function () {
+                writeTip("登录中...");
+            },
+            success: function(res) {
+                if (res === "1") {
+                    location.href = getReturnUrl();
+                } else {
+                    writeMsg(res);
+                }
+            }
+        });
+    });
+
+    function getReturnUrl() {
+        var locSearch = location.search;
+        if (locSearch.length > 0) {
+            var returnUrl = locSearch.substr("?returl=".length);
+            return returnUrl;
+        }
+        return "/Index.aspx";
+    }
+
+    function writeMsg(msg) {
+        $("#loginMsg").removeClass("text-info").addClass("text-danger").hide().html(msg).fadeIn();
+    }
+
+    function writeTip(msg) {
+        $("#loginMsg").removeClass("text-danger").addClass("text-info").hide().html(msg).fadeIn();
+    }
+</script>
