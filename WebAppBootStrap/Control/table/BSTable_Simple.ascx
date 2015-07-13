@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BSTable_Simple.ascx.cs" Inherits="WebAppBootStrap.Control.table.BSTable_Simple" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BSTable_Simple.ascx.cs" Inherits="WebAppBS.Control.table.BSTable_Simple" %>
 <%:System.Web.Optimization.Styles.Render("~/bs_table_css") %>
 <%:System.Web.Optimization.Scripts.Render("~/bs_table_js") %>
 111

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="BSTable_Simple.aspx.cs" Inherits="WebAppBootStrap.Control.table.BSTable_Simple1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="BSTable_Simple.aspx.cs" Inherits="WebAppBS.Control.table.BSTable_Simple1" %>
 
 <%@ Register Src="~/Control/table/BSTable_Simple.ascx" TagPrefix="uc1" TagName="BSTable_Simple" %>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBootStrap.Content.bootstrap.datepicker.Test" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBS.Content.bootstrap.datepicker.Test" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/bootstrap-datepicker3.css" rel="stylesheet" />
     <script src="js/bootstrap-datepicker.js"></script>

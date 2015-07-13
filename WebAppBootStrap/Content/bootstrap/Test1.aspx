@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test1.aspx.cs" Inherits="WebAppBootStrap.Content.bootstrap.Test1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test1.aspx.cs" Inherits="WebAppBS.Content.bootstrap.Test1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../script/bs.modal.js"></script>
     <script src="../script/bs.alert.js"></script>

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Bootstrap.master.cs" Inherits="WebAppBootStrap.Bootstrap" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Bootstrap.master.cs" Inherits="WebAppBS.Bootstrap" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 
 <!DOCTYPE html>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBootStrap.Content.bootstrap.tagsinput.examples.Test" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBS.Content.bootstrap.tagsinput.examples.Test" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../dist/bootstrap-tagsinput.css" rel="stylesheet" />
     <script src="../dist/bootstrap-tagsinput.js"></script>

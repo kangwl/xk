@@ -1,4 +1,4 @@
-﻿<%@ Page Title="用户列表" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="WebAppBootStrap.View.User.List" %>
+﻿<%@ Page Title="用户列表" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="WebAppBS.View.User.List" %>
 
 <%@ Register Src="~/Control/table/BSTable_Page.ascx" TagPrefix="uc1" TagName="BSTable_Page" %>
 

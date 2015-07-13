@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebAppBootStrap.Account.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebAppBS.Account.Login" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 
 <!DOCTYPE html>

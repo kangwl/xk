@@ -1,4 +1,4 @@
-﻿<%@ Page Title="table" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBootStrap.Content.bootstrap.table.Test" %>
+﻿<%@ Page Title="table" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBS.Content.bootstrap.table.Test" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="dist/bootstrap-table.css" rel="stylesheet" />
     <script src="dist/bootstrap-table.js"></script>

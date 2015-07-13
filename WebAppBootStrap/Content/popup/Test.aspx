@@ -1,4 +1,4 @@
-﻿<%@ Page Title="popup test" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBootStrap.Content.popup.Test" %>
+﻿<%@ Page Title="popup test" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="WebAppBS.Content.popup.Test" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/magnific-popup.css" rel="stylesheet" />
     <script src="js/jquery.magnific-popup.js"></script>

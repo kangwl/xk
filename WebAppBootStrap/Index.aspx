@@ -1,4 +1,4 @@
-﻿<%@ Page Title="首页" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebAppBootStrap.Index" %>
+﻿<%@ Page Title="首页" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebAppBS.Index" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%:Styles.Render("~/bs_select_css") %>
