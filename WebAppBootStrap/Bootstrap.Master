@@ -11,7 +11,7 @@
     <title><%:Page.Title %> - my bootstrap web</title>
     <%:Styles.Render("~/css/main") %>
     <%:Scripts.Render("~/js/main") %>
-    
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
@@ -28,6 +28,7 @@
     <style>
          html,body{background:#f1f1f1 url(data:image/gif;base64,R0lGODlhBgAGAIAAAPPz8+bm5iH5BAAAAAAALAAAAAAGAAYAAAIJRI52aroY2lsFADs=); }
          /*body{ background-color: #A9A9A9}*/
+         #content{ background-color: #ffffff}
     </style>
     <script>
         $(function () {
@@ -105,7 +106,7 @@
         page_loading_process(30);
     </script> 
     <%--<form id="form1" runat="server">--%>
-        <div class="container" style="padding-bottom: 70px;min-height: 500px">
+        <div id="content" class="container" style="padding-bottom: 70px;">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 
             </asp:ContentPlaceHolder> 
@@ -114,7 +115,7 @@
     <script type="text/javascript">
         page_loading_process(70);
     </script> 
-    <div id="foot" class="navbar navbar-default">
+    <div id="foot" class="nav navbar-default">
         <div id="foot_content">
             All Rights Reserved.
         </div>

@@ -160,6 +160,7 @@
     <Content Include="Content\bootstrap\main\dist\css\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\main\dist\css\bootstrap.css" />
     <Content Include="Content\bootstrap\main\dist\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\main\dist\css\bootstrap-theme-primary.css" />
     <Content Include="Content\bootstrap\main\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\bootstrap\main\dist\js\bootstrap.js" />
     <Content Include="Content\bootstrap\main\dist\js\bootstrap.min.js" />
