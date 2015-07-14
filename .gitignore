@@ -69,3 +69,5 @@
 /.localhistory/XK.Dal
 /.localhistory/XK.Model
 /.localhistory
+/XK.DataApi/bin/Debug
+/XK.DataApi/obj/Debug

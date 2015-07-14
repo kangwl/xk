@@ -401,7 +401,13 @@ using Newtonsoft.Json.Linq;
 
             return lenTotal;
         }
-
+        /// <summary>
+        /// 根据key获取HttpRequest的value
+        /// 直接调用即可，不用区分POST/GET
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string GetVal(this HttpRequest request, string key) {
             string method = request.HttpMethod.ToUpper();
             string val = "";

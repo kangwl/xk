@@ -14,7 +14,7 @@
     <RootNamespace>WebAppBS</RootNamespace>
     <AssemblyName>WebAppBS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -394,6 +394,9 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Api\ApiModule.cs" />
+    <Compile Include="Api\Data.ashx.cs">
+      <DependentUpon>Data.ashx</DependentUpon>
+    </Compile>
     <Compile Include="AppStart\BundleConfig.cs" />
     <Compile Include="Bootstrap.Master.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
@@ -544,6 +547,7 @@
     <Content Include="Content\script\jq.textarea.autoheight.js" />
     <Content Include="Content\bootstrap\table\data\data.txt" />
     <Content Include="Account\Account.ashx" />
+    <Content Include="Api\Data.ashx" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <Content Include="ViewHandler\User.ashx" />
     <None Include="Web.Debug.config">
@@ -570,6 +574,10 @@
       <Project>{60fe30ec-ee6c-427b-8d89-2571eaf40f1d}</Project>
       <Name>XK.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XK.DataApi\XK.DataApi.csproj">
+      <Project>{d3e2e40c-d545-4e0c-aa8a-1f2a7bf7406d}</Project>
+      <Name>XK.DataApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XK.WeiXin\XK.WeiXin.csproj">
       <Project>{3a4d0520-091c-4d9c-8094-c2c4725f1186}</Project>
       <Name>XK.WeiXin</Name>
@@ -589,11 +597,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7918</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4886/</IISUrl>
+          <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

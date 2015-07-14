@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XK.Common", "XK.Common\XK.Common.csproj", "{A49248A4-5A0E-444B-B95D-A13AF3D4A572}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppBS", "WebAppBootStrap\WebAppBS.csproj", "{61F06DF3-C6B3-4F75-A251-7D1D2D49A9AB}"
@@ -32,6 +34,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XK.WeiXin", "XK.WeiXin\XK.WeiXin.csproj", "{3A4D0520-091C-4D9C-8094-C2C4725F1186}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XK.Blitline", "XK.Blitline\XK.Blitline.csproj", "{CD45926F-7C2C-43DE-8732-0D3E0FDB2512}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9.DataApi", "9.DataApi", "{75304FE7-D549-4B02-A8E9-A2930840D9B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XK.DataApi", "XK.DataApi\XK.DataApi.csproj", "{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +85,10 @@ Global
 		{CD45926F-7C2C-43DE-8732-0D3E0FDB2512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD45926F-7C2C-43DE-8732-0D3E0FDB2512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD45926F-7C2C-43DE-8732-0D3E0FDB2512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,5 +101,6 @@ Global
 		{60FE30EC-EE6C-427B-8D89-2571EAF40F1D} = {C019E76F-92CA-4EF8-B9FE-7AB263F55F3C}
 		{3A4D0520-091C-4D9C-8094-C2C4725F1186} = {F06A2D2C-65D5-4BB5-82BC-E6C28774E1C2}
 		{CD45926F-7C2C-43DE-8732-0D3E0FDB2512} = {F06A2D2C-65D5-4BB5-82BC-E6C28774E1C2}
+		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D} = {75304FE7-D549-4B02-A8E9-A2930840D9B9}
 	EndGlobalSection
 EndGlobal

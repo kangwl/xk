@@ -9,16 +9,17 @@ namespace WebAppBS.Api {
             context.BeginRequest += context_BeginRequest;
         }
 
-        void context_BeginRequest(object sender, EventArgs e) {
+        private void context_BeginRequest(object sender, EventArgs e) {
             HttpApplication application = sender as HttpApplication;
-            string absPath = application.Request.Url.AbsolutePath.ToLower();
-            var arr = absPath.Split('/');
-            int a = 0;
-            if (arr.Contains("api")) {
-                a = 12;
-                application.Context.RewritePath("/view/user/list.aspx");
+            var arr = application.Request.Url.AbsolutePath.Split('/');
+            if (arr.Length < 4) {
+                application.Response.Write("err");
+                application.Response.End();
+                return;
             }
-            string b = a.ToString();
+            if (arr[1] == "api") {
+                application.Context.RewritePath("/Api/Data.ashx");
+            }
         }
 
         public void Dispose() {
