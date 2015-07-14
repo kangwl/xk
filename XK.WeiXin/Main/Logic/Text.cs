@@ -36,7 +36,6 @@ namespace XK.WeiXin.Main.Logic {
         }
 
 
-
         private readonly Dictionary<string, Func<string>> keywordFuncs = new Dictionary<string, Func<string>>();
 
         private void AddKeyWordFunc() {
@@ -54,7 +53,7 @@ namespace XK.WeiXin.Main.Logic {
             keyWordStartFuncs.Add("删除股票",RemoveStock);
             keyWordStartFuncs.Add("删除全部股票", RemoveAllStock);
             keyWordStartFuncs.Add("查询股票", SearchStock);
-
+            keyWordStartFuncs.Add("股票", GetStock);
         }
 
 
@@ -80,13 +79,18 @@ namespace XK.WeiXin.Main.Logic {
 
         private string GetStock() {
             Ext.Stock stock = new Stock(XmlDoc);
-            ReturnText = stock.GetStock("股票");
+            if (string.IsNullOrWhiteSpace(Content.Substring("股票".Length))) {
+                ReturnText = stock.GetStock("股票");
+            }
+            else {
+                ReturnText = stock.SearchStock("股票");
+            }
             return CreateSendMsg();
         }
 
         private string SearchStock() {
             Ext.Stock stock = new Stock(XmlDoc);
-            ReturnText = stock.SearchStock("股票");
+            ReturnText = stock.SearchStock("查询股票");
             return CreateSendMsg();
         }
         //#############################################################
