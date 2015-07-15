@@ -1,0 +1,9 @@
+C:\Git\xk\XK.WeiXin\bin\Release\XK.WeiXin.dll
+C:\Git\xk\XK.WeiXin\bin\Release\XK.WeiXin.pdb
+C:\Git\xk\XK.WeiXin\bin\Release\Newtonsoft.Json.dll
+C:\Git\xk\XK.WeiXin\bin\Release\XK.Common.dll
+C:\Git\xk\XK.WeiXin\bin\Release\XK.Common.pdb
+C:\Git\xk\XK.WeiXin\bin\Release\Newtonsoft.Json.xml
+C:\Git\xk\XK.WeiXin\obj\Release\XK.WeiXin.csprojResolveAssemblyReference.cache
+C:\Git\xk\XK.WeiXin\obj\Release\XK.WeiXin.dll
+C:\Git\xk\XK.WeiXin\obj\Release\XK.WeiXin.pdb

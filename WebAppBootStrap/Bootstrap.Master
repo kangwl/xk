@@ -28,7 +28,14 @@
     <style>
          html,body{background:#f1f1f1 url(data:image/gif;base64,R0lGODlhBgAGAIAAAPPz8+bm5iH5BAAAAAAALAAAAAAGAAYAAAIJRI52aroY2lsFADs=); }
          /*body{ background-color: #A9A9A9}*/
-         #content{ background-color: #ffffff}
+         /*#content{ background-color: #ffffff}*/
+         #content_left .panel-group .panel+.panel{margin-top: 0}
+         #content_left .panel-group .panel {
+             -ms-border-radius: 0;
+             border-radius: 0
+         }
+         #content_left .panel .panel-heading a{display: block}
+         .panel-collapse .menu_ul li a{display: block}
     </style>
     <script>
         $(function () {
@@ -105,13 +112,63 @@
     <script type="text/javascript">
         page_loading_process(30);
     </script> 
-    <%--<form id="form1" runat="server">--%>
-        <div id="content" class="container" style="padding-bottom: 70px;">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    <div id="content" class="container" style="padding-bottom: 70px;">
+        <div class="row">
+            <div id="content_left" class="col-md-2">
+                <div class="panel-group" id="collapse" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#collapse" href="#collapse-one">
+                                    内容管理
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-one" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <ul class="menu_ul list-unstyled">
+                                    <li><a href="/View/User/List.aspx">用户管理</a></li>
+                                    <li><a href="/View/User/List.aspx">新闻管理</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#collapse" href="#collapse-two">菜单2
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-two" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Morbi eget libero quis metus consectetur semper.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#collapse" href="#collapse-three">菜单3
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-three" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Suspendisse ullamcorper massa eget eleifend iaculis.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10" style="background-color: #fff">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 
-            </asp:ContentPlaceHolder> 
+                </asp:ContentPlaceHolder> 
+            </div>
         </div>
-    <%--</form>--%>
+    </div>
+
     <script type="text/javascript">
         page_loading_process(70);
     </script> 

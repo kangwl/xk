@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
 using XK.Common.web;
 
 namespace XK.WeiXin.Author {
@@ -38,14 +37,14 @@ namespace XK.WeiXin.Author {
        public AccessToken_Model GetAccessToken() {
            string jsonAccessToken = GetAccessTokenJson();
            AccessToken_Model accessToken =
-               JsonConvert.DeserializeObject<AccessToken_Model>(jsonAccessToken);
+               Common.json.JsonHelper<AccessToken_Model>.DeserializeFromStr(jsonAccessToken);
            return accessToken;
        }
 
        public AccessToken_Model GetAccessToken(string appID, string appSecret) {
            string jsonAccessToken = GetAccessTokenJson(appID, appSecret);
            AccessToken_Model accessToken =
-               JsonConvert.DeserializeObject<AccessToken_Model>(jsonAccessToken);
+               Common.json.JsonHelper<AccessToken_Model>.DeserializeFromStr(jsonAccessToken);
            return accessToken;
        }
 

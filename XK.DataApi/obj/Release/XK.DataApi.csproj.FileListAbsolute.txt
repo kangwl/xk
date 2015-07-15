@@ -1,0 +1,9 @@
+C:\Git\xk\XK.DataApi\bin\Release\XK.DataApi.dll
+C:\Git\xk\XK.DataApi\bin\Release\XK.DataApi.pdb
+C:\Git\xk\XK.DataApi\bin\Release\XK.Common.dll
+C:\Git\xk\XK.DataApi\bin\Release\Newtonsoft.Json.dll
+C:\Git\xk\XK.DataApi\bin\Release\XK.Common.pdb
+C:\Git\xk\XK.DataApi\bin\Release\Newtonsoft.Json.xml
+C:\Git\xk\XK.DataApi\obj\Release\XK.DataApi.csprojResolveAssemblyReference.cache
+C:\Git\xk\XK.DataApi\obj\Release\XK.DataApi.dll
+C:\Git\xk\XK.DataApi\obj\Release\XK.DataApi.pdb

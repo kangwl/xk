@@ -393,10 +393,6 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Api\ApiModule.cs" />
-    <Compile Include="Api\Data.ashx.cs">
-      <DependentUpon>Data.ashx</DependentUpon>
-    </Compile>
     <Compile Include="AppStart\BundleConfig.cs" />
     <Compile Include="Bootstrap.Master.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
@@ -547,7 +543,6 @@
     <Content Include="Content\script\jq.textarea.autoheight.js" />
     <Content Include="Content\bootstrap\table\data\data.txt" />
     <Content Include="Account\Account.ashx" />
-    <Content Include="Api\Data.ashx" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <Content Include="ViewHandler\User.ashx" />
     <None Include="Web.Debug.config">

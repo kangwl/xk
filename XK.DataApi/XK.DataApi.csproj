@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,13 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModule.cs" />
     <Compile Include="Enter.cs" />
+    <Compile Include="Logic\JsonTpl.cs" />
+    <Compile Include="Logic\Model\News.cs" />
+    <Compile Include="Logic\Model\User.cs" />
+    <Compile Include="Logic\PageJsonTpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Act\IAct.cs" />
+    <Compile Include="Source\Act\UserAct.cs" />
     <Compile Include="Source\News.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Source\User.cs" />
-    <Compile Include="ApiInfo\ApiException.cs" />
+    <Compile Include="Logic\ApiInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XK.Common\XK.Common.csproj">
@@ -54,6 +61,7 @@
       <Name>XK.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

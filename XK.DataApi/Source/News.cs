@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using XK.DataApi.ApiInfo;
+using XK.DataApi.Logic;
 
 namespace XK.DataApi.Source {
     public class News {
@@ -27,12 +27,13 @@ namespace XK.DataApi.Source {
 
         public class Act {
             public string Add(HttpRequest request) {
+               ApiInfo info=new ApiInfo();
                 return "news add";
             }
 
             public string GetList(HttpRequest request) {
-                ApiException exception = new ApiException(2, "news list err");
-                string extjson = Common.json.JsonHelper<ApiException>.Serialize2Object(exception);
+                ApiInfo exception = new ApiInfo(2, "news list err");
+                string extjson = Common.json.JsonHelper<ApiInfo>.Serialize2Object(exception);
                 return extjson;
             }
 

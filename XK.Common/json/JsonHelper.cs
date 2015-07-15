@@ -16,6 +16,16 @@ namespace XK.Common.json {
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
             return json;
         }
+        /// <summary>
+        /// 获取JObject
+        /// 取值EXP： string zhangjia = jo["items"]["264648"].ToString();
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static JObject GetJObject(string json) {
+            JObject jo = (JObject)JsonConvert.DeserializeObject(json);
+            return jo;
+        }
     }
     public class JsonHelper<T> {
  
