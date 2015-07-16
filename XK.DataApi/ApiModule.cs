@@ -28,15 +28,12 @@ namespace XK.DataApi {
                 if (application.Request.Url.IsFile) return;
                 var arr = application.Request.Url.AbsolutePath.ToLower().Split('/');
                 int apiSignIndex = arr.ToList().FindIndex(a => a == ApiSign);
-                if (apiSignIndex >= 0 && arr.Length < 4) {
-                    json = Common.json.JsonFac.Serialize2Json(new Logic.ApiInfo(2, "参数不对"));
-                    Resposer(application.Context, json);
-                }
+    
                 if (apiSignIndex >= 0) {
-                    json = GetDataJson(application.Context);
+                    //属于api访问
+                    json = arr.Length < 4 ? Common.json.JsonFac.Serialize2Json(new Logic.ApiInfo(2, "参数不对")) : GetDataJson(application.Context);
                     Resposer(application.Context, json);
                 }
-
             }
         }
 
@@ -49,7 +46,7 @@ namespace XK.DataApi {
                 int apiSignIndex = urlitm.ToList().FindIndex(a => a == ApiSign);
                 string source = urlitm[apiSignIndex + 1]; //对应处理的类（XK.DataApi.Source 中）
                 string act = urlitm[apiSignIndex + 2]; //对应处理的类中的方法
-
+                //处理
                 json = new XK.DataApi.Enter().Init(source, act, context.Request);
             }
             catch (Exception ex) {
