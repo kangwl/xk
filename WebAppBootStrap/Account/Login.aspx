@@ -39,7 +39,7 @@
     </script>
   <script>
       $(function () {
-          $("#loginform").load("/Account/_Login.html");
+         
       })
 
   </script>
@@ -54,6 +54,7 @@
         
     </div>
     <script type="text/javascript">
+        $("#loginform").load("/Account/_Login.html");
         page_loading_process(30);
     </script> 
     </form>

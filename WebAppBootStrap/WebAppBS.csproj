@@ -360,6 +360,7 @@
     <Content Include="Control\table\BSTable_Simple.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
+    <Content Include="View\Index.aspx" />
     <Content Include="View\User\List.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -496,6 +497,13 @@
     <Compile Include="ViewHandler\User.ashx.cs">
       <DependentUpon>User.ashx</DependentUpon>
     </Compile>
+    <Compile Include="View\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\User\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -580,6 +588,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="View\Menu\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
