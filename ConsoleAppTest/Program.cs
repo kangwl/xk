@@ -40,10 +40,10 @@ namespace ConsoleAppTest {
             //JObject jo = (JObject)JsonConvert.DeserializeObject(s);
             //string zone = jo["items"]["7"].ToString();
             //Newtonsoft.Json.JsonReader reader=new JTokenReader();
-          
+
             Console.Read();
         }
-      
+
     }
  
 
