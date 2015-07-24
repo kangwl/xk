@@ -10,7 +10,7 @@ namespace WebAppBS.Control.table.bsTableCore {
     /// </summary>
     public class BSTable {
 
-        private const string tableTPL = "<table id=\"{0}\"  data-show-columns=\"true\">{1}</table>";
+        private const string tableTPL = "<table id=\"{0}\"  data-show-columns=\"false\">{1}</table>";
         private static string theadTPL = "<thead><tr>{0}</tr></thead>";//普通的
         /// <summary>
         /// 带checkbox的

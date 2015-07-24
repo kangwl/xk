@@ -40,7 +40,7 @@
     </script>
   <script>
       $(function () {
-          $("#registform").load("/Account/_Regist.html");
+          
       })
 
   </script>
@@ -55,6 +55,7 @@
         
     </div>
     <script type="text/javascript">
+        $("#registform").load("/Account/_Regist.html");
         page_loading_process(30);
     </script> 
     </form>

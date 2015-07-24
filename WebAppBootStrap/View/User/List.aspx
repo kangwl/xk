@@ -6,14 +6,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                用户管理
+            </div>
+        </div>
+        <div class="panel-body">
+            <uc1:BSTable_Page runat="server" ID="BSTable_Page" 
+                BSTableID="user_table"
+                BSTableFields="ID:#,Name:姓名,Age:年龄,Sex:性别,MobilePhone:手机"
+                BSUrl="/ViewHandler/User.ashx"
+                HasCheck="True"
+            />
+        </div>
+    </div>
 
-    <uc1:BSTable_Page runat="server" ID="BSTable_Page" 
-            BSTableID="user_table"
-            BSTableFields="ID:#,Name:姓名,Age:年龄,Sex:性别,MobilePhone:手机"
-            BSUrl="/ViewHandler/User.ashx"
-            HasCheck="True"
-        
-    />
 
 
 </asp:Content>
