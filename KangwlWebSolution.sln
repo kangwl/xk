@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XK.Common", "XK.Common\XK.Common.csproj", "{A49248A4-5A0E-444B-B95D-A13AF3D4A572}"
 EndProject
@@ -38,6 +38,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9.DataApi", "9.DataApi", "{75304FE7-D549-4B02-A8E9-A2930840D9B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XK.DataApi", "XK.DataApi\XK.DataApi.csproj", "{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "998", "998", "{10841491-87C0-4767-8852-C301CA166999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vinny.DBHelper", "Vinny.DBHelper\Vinny.DBHelper.csproj", "{36BF3918-DA21-4B90-B572-46E8E808A3B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,10 @@ Global
 		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BF3918-DA21-4B90-B572-46E8E808A3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BF3918-DA21-4B90-B572-46E8E808A3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BF3918-DA21-4B90-B572-46E8E808A3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BF3918-DA21-4B90-B572-46E8E808A3B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +110,6 @@ Global
 		{3A4D0520-091C-4D9C-8094-C2C4725F1186} = {F06A2D2C-65D5-4BB5-82BC-E6C28774E1C2}
 		{CD45926F-7C2C-43DE-8732-0D3E0FDB2512} = {F06A2D2C-65D5-4BB5-82BC-E6C28774E1C2}
 		{D3E2E40C-D545-4E0C-AA8A-1F2A7BF7406D} = {75304FE7-D549-4B02-A8E9-A2930840D9B9}
+		{36BF3918-DA21-4B90-B572-46E8E808A3B5} = {10841491-87C0-4767-8852-C301CA166999}
 	EndGlobalSection
 EndGlobal
