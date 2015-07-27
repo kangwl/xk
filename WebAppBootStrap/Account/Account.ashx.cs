@@ -35,21 +35,16 @@ namespace WebAppBS.Account {
                 string pwd = request.GetVal("pwd");
                 string rem = request.GetVal("rem");
                 bool remember = (rem.Trim().ToLower() == "true");
-               // try {
-                    bool success = false;
-       
-                    DataTable dt = User_Bll.CheckLogin(uid, pwd, out success);
-                    if (success) {
-                        //login success
-                        DataRow row = dt.Rows[0];
-                        int usertype = row["UserType"].ToInt();
-                        LoginLogic.RecordLogined(uid, usertype.ToString(), DateTime.Now.AddDays(2), remember);
-                    }
-                    context.Response.Write(success ? "1" : "登录失败，请检查用户名和密码");
-              //  }
-             //   catch (Exception) {
-             //       context.Response.Write("系统异常");
-             //   }
+                bool success = false;
+
+                DataTable dt = User_Bll.CheckLogin(uid, pwd, out success);
+                if (success) {
+                    //login success
+                    DataRow row = dt.Rows[0];
+                    int usertype = row["UserType"].ToInt();
+                    LoginLogic.RecordLogined(uid, usertype.ToString(), DateTime.Now.AddDays(2), remember);
+                }
+                context.Response.Write(success ? "1" : "登录失败，请检查用户名和密码");
             }
         }
 

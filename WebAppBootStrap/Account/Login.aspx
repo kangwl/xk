@@ -54,7 +54,16 @@
         
     </div>
     <script type="text/javascript">
-        $("#loginform").load("/Account/_Login.html");
+        //$("#loginform").load("/Account/_Login.html");
+        $.ajax({
+            type: "get",
+            url: "/Account/_Login.html",
+            async: false,
+            error: function () { document.write("出错，刷新重试") },
+            success: function (res) {
+                $("#loginform").html(res);
+            }
+        });
         page_loading_process(30);
     </script> 
     </form>
