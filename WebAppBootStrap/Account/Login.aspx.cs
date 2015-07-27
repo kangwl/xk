@@ -17,6 +17,5 @@ namespace WebAppBS.Account {
             }
         }
 
-        public string RetutnUrl => Request.QueryString["returl"];
     }
 }

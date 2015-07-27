@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using XK.Authentication;
-using XK.Bll;
+using XK.Bll; 
 
 namespace WebAppBS.Account {
     /// <summary>
@@ -37,6 +37,7 @@ namespace WebAppBS.Account {
                 bool remember = (rem.Trim().ToLower() == "true");
                // try {
                     bool success = false;
+       
                     DataTable dt = User_Bll.CheckLogin(uid, pwd, out success);
                     if (success) {
                         //login success

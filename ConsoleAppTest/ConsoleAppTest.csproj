@@ -49,6 +49,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XK.Dal\XK.Dal.csproj">
+      <Project>{e2bda805-ec55-4c93-b1a2-428092fc484f}</Project>
+      <Name>XK.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XK.DBUtil\XK.DBUtil.csproj">
+      <Project>{955fc6c6-591e-4893-b8dd-db1702ef8d44}</Project>
+      <Name>XK.DBUtil</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,86 +3,61 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using XK.Dal._Helper;
-using XK.Dal._Helper;
-using XK.Dal._Helper.UtilBase;
+using XK.Common.help;
+using XK.DBUtil; 
+using XK.DBUtil.Helper;
+using XK.Model;
 
 namespace XK.Dal {
-    public class User_Dal : IDal.IUser {
+    public class User_Dal:IDal.IUser<Model.User_Model> {
 
-        public string TableName { get { return "User"; } }
+        public string TableName {
+            get { return "[User]"; }
+        }
+         
+        public bool Insert(Model.User_Model userModel) {
+               
+            InsertHelper insertHelper = new InsertHelper(TableName);
+            insertHelper.AddParam("Name", userModel.Name);
+            insertHelper.AddParam("AddDateTime", userModel.AddDateTime);
+            insertHelper.AddParam("Age", userModel.Age);
+            insertHelper.AddParam("Email", userModel.Email);
+            insertHelper.AddParam("MobilePhone", userModel.MobilePhone);
+            insertHelper.AddParam("Name", userModel.Name);
+            insertHelper.AddParam("Sex", userModel.Sex);
+            insertHelper.AddParam("UpdateDateTime", userModel.UpdateDateTime);
+            insertHelper.AddParam("UserID", userModel.UserID);
+            insertHelper.AddParam("UserPassword", userModel.UserPassword);
+            insertHelper.AddParam("UserType", userModel.UserType);
 
-        public bool CreateTable() {
-            string userTable = @"CREATE TABLE [User](
-	                            ID INT PRIMARY KEY IDENTITY,
-	                            Name NVARCHAR(10),
-	                            UserID VARCHAR(50),
-	                            UserPassword VARCHAR(30),
-	                            Age INT,
-	                            Sex INT,
-	                            MobilePhone VARCHAR(20),
-	                            Email varchar(60),
-	                            AddDateTime DATETIME,
-	                            UpdateDateTime DATETIME,
-	                            UserType INT
-                            )";
+            return DBExcute.Insert(insertHelper); 
+        }
+ 
 
-            return DbHelperSQL.ExecuteSql(userTable) > 0;
+        public int GetRecordCount(List<Common.help.Where> whereList) {
+            WhereHelper whereHelper = new WhereHelper();
+            foreach (Where where in whereList) {
+                whereHelper.AddWhere(where.Field, where.Sign, where.Value);
+            }
+            SelectHelper selectHelper = new SelectHelper(TableName, "count(1)", whereHelper);
+            int recordCount = DBExcute.GetRecordCount(selectHelper);
+            return recordCount;
         }
 
-        public void CheckLogin(string userID, string password) {
-          
+        public DataTable GetDataTable(List<Common.help.Where> whereList,int top) {
+            WhereHelper whereHelper = new WhereHelper(whereList);
+            SelectHelper selectHelper = new SelectHelper(TableName, top, "*", whereHelper);
+            return DBExcute.GetDataTable(selectHelper);
         }
 
-        public DataTable GetTable() {
-            MyDBHelper.SelectDB.SelectDBParams pParams = new MyDBHelper.SelectDB.SelectDBParams();
-            pParams.TableName = TableName;
-            pParams.Fields = "*";
-            pParams.OrderBy = "id asc";
-            pParams.DicWhere = new Dictionary<string, dynamic>() {{"id", "12"}};
-            MyDBHelper.SelectDB selectDb = new MyDBHelper.SelectDB(pParams);
-            DataTable dt = selectDb.GetTable();
-            return dt;
+        public DataTable GetDataTable(List<Common.help.Where> whereList, int pageSize, int pageIndex, string order) {
+            WhereHelper whereHelper = new WhereHelper();
+            foreach (Where where in whereList) {
+                whereHelper.AddWhere(where.Field, where.Sign, where.Value);
+            }
+            SelectHelper selectHelper = new SelectHelper(TableName, "*", whereHelper, pageIndex, pageSize, order);
+            return DBExcute.GetDataTable(selectHelper);
         }
 
-        public bool Insert(Dictionary<string, dynamic> dicFileVals) {
-            return InsertOP.Insert(TableName, dicFileVals);
-        }
-
-        public List<int> InsertBatch(List<Dictionary<string,dynamic>> listDic) {
-            return InsertOP.InsertBatch(TableName, listDic);
-        }
-
-        public int GetRecordCount(string where) {
-            return SelectOP.GetTotalCount(TableName, where);
-        }
-
-        public DataTable GetDataTable(string @where) {
-            throw new NotImplementedException();
-        }
-
-        public DataTable GetDataTable(string @where, int pageSize, int pageIndex, string order) {
-            return SelectOP.QueryTablePager(TableName, where, pageIndex, pageSize, order);
-        }
-
-        public bool Delete(string @where) {
-            throw new NotImplementedException();
-        }
-
-        public DataTable GetOne(string @where) {
-            throw new NotImplementedException();
-        }
-
-        public bool Exist(string @where) {
-            throw new NotImplementedException();
-        }
-
-        public DataTable ExistModel(string @where,out bool exist) {
-            DataTable dt = SelectOP.QueryTable(TableName, 1, "*", where);
-
-            exist = (dt.Rows.Count > 0);
-
-            return dt;
-        }
     }
 }

@@ -72,3 +72,7 @@
 /XK.DataApi/bin/Debug
 /XK.DataApi/obj/Debug
 /.vs/KangwlWebSolution/v14/*.suo
+/XK.DBUtil/bin/Debug
+/XK.DBUtil/obj/Debug
+/XK.Model/obj/Debug
+/XK.Model/bin/Debug

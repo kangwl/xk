@@ -59,6 +59,7 @@
     <Compile Include="excel\ExcelHelper.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="HardWareInfo.cs" />
+    <Compile Include="help\Where.cs" />
     <Compile Include="HttpLogin.cs" />
     <Compile Include="IniHelper.cs" />
     <Compile Include="json\JsonCreator.cs" />
