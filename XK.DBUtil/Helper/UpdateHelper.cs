@@ -19,6 +19,11 @@ namespace XK.DBUtil.Helper {
             this.WhereHelper = whereHelper;
         }
 
+        public UpdateHelper(string table, WhereHelper whereHelper, Dictionary<string, dynamic> dicKV)
+            : this(table, whereHelper) {
+            AddUpdateItem(dicKV);
+        }
+
         public string Sql {
             get { return string.Format(sql, Table, string.Join(",", FieldList), WhereHelper.Where); }
         }
@@ -27,6 +32,21 @@ namespace XK.DBUtil.Helper {
             get { 
                 sqlParameterList.AddRange(WhereHelper.SqlParameters);
                 return sqlParameterList.ToArray();
+            }
+        }
+
+        public void AddUpdateItem(Dictionary<string, dynamic> dicKV) {
+            if (FieldList == null) {
+                FieldList = new List<string>();
+            }
+            foreach (KeyValuePair<string, dynamic> pair in dicKV) {
+                FieldList.Add(string.Format("{0}=@{0}", pair.Key));
+
+                if (sqlParameterList == null) {
+                    sqlParameterList = new List<SqlParameter>();
+                }
+
+                sqlParameterList.Add(new SqlParameter(string.Format("@{0}", pair.Key), pair.Value));
             }
         }
 

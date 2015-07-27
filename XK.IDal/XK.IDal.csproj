@@ -54,6 +54,10 @@
       <Project>{955FC6C6-591E-4893-B8DD-DB1702EF8D44}</Project>
       <Name>XK.DBUtil</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XK.Model\XK.Model.csproj">
+      <Project>{68127774-a47f-48f8-8aac-3729a64bb54f}</Project>
+      <Name>XK.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

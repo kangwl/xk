@@ -49,6 +49,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tool\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XK.Common\XK.Common.csproj">

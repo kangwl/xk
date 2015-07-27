@@ -53,13 +53,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XK.Dal\XK.Dal.csproj">
-      <Project>{e2bda805-ec55-4c93-b1a2-428092fc484f}</Project>
-      <Name>XK.Dal</Name>
+    <ProjectReference Include="..\XK.Bll\XK.Bll.csproj">
+      <Project>{8156bb0c-d0aa-4633-bd5a-a788efec3caa}</Project>
+      <Name>XK.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XK.DBUtil\XK.DBUtil.csproj">
-      <Project>{955fc6c6-591e-4893-b8dd-db1702ef8d44}</Project>
-      <Name>XK.DBUtil</Name>
+    <ProjectReference Include="..\XK.Common\XK.Common.csproj">
+      <Project>{a49248a4-5a0e-444b-b95d-a13af3d4a572}</Project>
+      <Name>XK.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XK.Model\XK.Model.csproj">
+      <Project>{68127774-a47f-48f8-8aac-3729a64bb54f}</Project>
+      <Name>XK.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

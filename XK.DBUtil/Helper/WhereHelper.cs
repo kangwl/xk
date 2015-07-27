@@ -13,8 +13,9 @@ namespace XK.DBUtil.Helper {
             sqlParameterList = new List<SqlParameter>();
         }
 
-        public WhereHelper(IEnumerable<Where> wheres) : this() {
-            foreach (Where where in wheres) {
+        public WhereHelper(IEnumerable<WhereItem> wheres)
+            : this() {
+                foreach (WhereItem where in wheres) {
                 AddWhere(where.Field, where.Sign, where.Value);
             }
         }

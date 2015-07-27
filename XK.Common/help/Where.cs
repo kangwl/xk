@@ -7,9 +7,9 @@ namespace XK.Common.help {
     /// <summary>
     /// 帮助生成where查询条件
     /// </summary>
-    public class Where {
-        public Where(){}
-        public Where(string field, string sign, dynamic value) {
+    public class WhereItem {
+        public WhereItem(){}
+        public WhereItem(string field, string sign, dynamic value) {
             Field = field;
             Sign = sign;
             Value = value;

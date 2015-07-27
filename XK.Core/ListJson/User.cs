@@ -14,8 +14,8 @@ namespace XK.Core.ListJson {
 
 
         public override string GetDataJson() {
-            List<Common.help.Where> wheres = new List<Where>();
-            wheres.Add(new Where("1", "=", 1));
+            List<Common.help.WhereItem> wheres = new List<WhereItem>();
+            wheres.Add(new WhereItem("1", "=", 1));
 
             Total = Bll.User_Bll.GetRecordCount(wheres);
             DataTable = Bll.User_Bll.GetDataTable(wheres, Limit, Offset / Limit + 1, string.Format("{0} {1}", Sort, Order));

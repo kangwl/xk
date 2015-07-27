@@ -9,9 +9,7 @@ using System.Web;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using XK.Dal;
-using XK.DBUtil;
-using XK.DBUtil.Helper;
+using XK.Common.help;
 
 
 namespace ConsoleAppTest {
@@ -45,57 +43,33 @@ namespace ConsoleAppTest {
             //string zone = jo["items"]["7"].ToString();
             //Newtonsoft.Json.JsonReader reader=new JTokenReader();
 
-            int success = 0;
+            //List<XK.Common.help.Where> wheres = new List<Where> {
+            //    new Where("1", "=", "1")
+            //};
+            //DataTable dt = XK.Bll.User_Bll.GetDataTable(wheres, 100);
+            //Console.WriteLine(dt.Rows.Count);
 
-            //insert
-            //XK.Dal.Vinny.InsertHelper insertHelper = new InsertHelper("[Users]");
-            //insertHelper.AddParam("UserID", "kangwl");
-            //insertHelper.AddParam("UserType", 1);
-            //insertHelper.AddParam("UserPassWord", "123456");
-            //insertHelper.AddParam("Birthday", DateTime.Now.AddYears(-18));
-            //insertHelper.AddParam("Sex", 1);
-            //insertHelper.AddParam("RegistDateTime", DateTime.Now);
-            //insertHelper.AddParam("UpdateDateTime", DateTime.Now);
-            //bool s = DBExcute.Insert(insertHelper);
-            //success = DbHelperSQL.ExecuteSql(insertHelper.Sql, insertHelper.SqlParameters);
+            //List<XK.Common.help.WhereItem> wheres = new List<WhereItem> {
+            //    new WhereItem("ID", "=", "6")
+            //};
+            //Dictionary<string, dynamic> dic = new Dictionary<string, dynamic>();
+            //dic.Add("Name", "kwl110");
+            //bool success = XK.Bll.User_Bll.Update(wheres, dic);
+            //Console.WriteLine(success);
+            //List<WhereItem> whereItems=new List<WhereItem> {
+            //    new WhereItem("ID","=","6")
+            //};
+            //bool success = XK.Bll.User_Bll.Delete(whereItems);
+            //Console.WriteLine(success);
 
+            //XK.Model.User_Model userModel = XK.Bll.User_Bll.GetModel(5);
+            //Console.WriteLine(userModel.Name);
 
-            //delete
-            //WhereHelper whereHelper = new WhereHelper();
-            //whereHelper.AddWhere("UserID", "=", "kangwl");
-            //whereHelper.AddWhere("ID", "<", 5);
-            //DeleteHelper delete = new DeleteHelper("[Users]", whereHelper);
-            //success = DbHelperSQL.ExecuteSql(delete.Sql, whereHelper.SqlParameters);
-
-            //select
-            //WhereHelper whereHelper = new WhereHelper();
-            //whereHelper.AddWhere("ID", "<=", 10);
-            //SelectHelper selectHelper = new SelectHelper("[Users]", 10, "*", whereHelper,"ID DESC");
-            //DataSet ds = DbHelperSQL.Query(selectHelper.Sql, whereHelper.SqlParameters);
-
-            //SelectHelper pageSelectHelper = new SelectHelper("[Users]", "*", whereHelper, 1, 10, "ID DESC");
-            //DataSet ds1 = DbHelperSQL.Query(pageSelectHelper.Sql, whereHelper.SqlParameters);
-
-            //int count = ds.Tables[0].Rows.Count;
-
-            //update
-            //WhereHelper updateWhereHelper = new WhereHelper();
-            //updateWhereHelper.AddWhere("ID", "=", 5);
-            //UpdateHelper updateHelper = new UpdateHelper("[Users]", updateWhereHelper);
-            //updateHelper.AddUpdateItem("UserID", "kwl");
-            //success = DbHelperSQL.ExecuteSql(updateHelper.Sql, updateHelper.SqlParameters);
-            
-            WhereHelper whereHelper=new WhereHelper();
-            whereHelper.AddWhere("1", "=", 1);
-            SelectHelper selectHelper = new SelectHelper("[Users]", "*", whereHelper);
-           // DataTable dt = DBExcute.GetDataTable(selectHelper);
-            using (SqlDataReader reader = DBExcute.GetDataReader(selectHelper)) {
-                if (reader.HasRows) {
-                    while (reader.Read()) {
-                        Console.WriteLine(reader["ID"] + "," + reader["UserID"]);
-                    }
-                }
-            }
+            List<XK.Common.help.WhereItem> whereItems = new List<WhereItem>();
+            whereItems.Add(new WhereItem("ID", "<=", 10));
+            List<XK.Model.User_Model> userModels;
+            userModels = XK.Bll.User_Bll.GetModels(whereItems, 1, 3, "ID ASC");
+            userModels.ForEach(u => Console.WriteLine(u.Name));
             Console.Read();
         }
 
