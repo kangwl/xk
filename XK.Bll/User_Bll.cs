@@ -7,7 +7,6 @@ namespace XK.Bll
 {
     public class User_Bll {
 
-
         private static readonly IDal.IUser<Model.User_Model> userDal = new User_Dal();
  
         /// <summary>
@@ -70,9 +69,5 @@ namespace XK.Bll
             return userDal.GetModels(whereList, pageSize, pageIndex, orderBy);
         } 
 
-
-        //public static DataTable ExistModel(string @where,out bool exist) {
-        //    return userDal.ExistModel(where, out exist);
-        //}
     }
 }
