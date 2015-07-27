@@ -1,88 +1,139 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using XK.Dal._Helper;
-using XK.Dal._Helper;
-using XK.Dal._Helper.UtilBase;
+using System.Data.SqlClient;
+using XK.Common.help;
+using XK.DBUtil; 
+using XK.DBUtil.Helper;
+using XK.DBUtil.Tool;
+using XK.Model;
 
 namespace XK.Dal {
-    public class User_Dal : IDal.IUser {
+    public class User_Dal:IDal.IUser<Model.User_Model> {
 
-        public string TableName { get { return "User"; } }
+        public string TableName {
+            get { return "[User]"; }
+        }
+         
+        public bool Insert(Model.User_Model userModel) {
+               
+            InsertHelper insertHelper = new InsertHelper(TableName);
+            insertHelper.AddParam("Name", userModel.Name);
+            insertHelper.AddParam("AddDateTime", userModel.AddDateTime);
+            insertHelper.AddParam("Age", userModel.Age);
+            insertHelper.AddParam("Email", userModel.Email);
+            insertHelper.AddParam("MobilePhone", userModel.MobilePhone);
+            insertHelper.AddParam("Name", userModel.Name);
+            insertHelper.AddParam("Sex", userModel.Sex);
+            insertHelper.AddParam("UpdateDateTime", userModel.UpdateDateTime);
+            insertHelper.AddParam("UserID", userModel.UserID);
+            insertHelper.AddParam("UserPassword", userModel.UserPassword);
+            insertHelper.AddParam("UserType", userModel.UserType);
 
-        public bool CreateTable() {
-            string userTable = @"CREATE TABLE [User](
-	                            ID INT PRIMARY KEY IDENTITY,
-	                            Name NVARCHAR(10),
-	                            UserID VARCHAR(50),
-	                            UserPassword VARCHAR(30),
-	                            Age INT,
-	                            Sex INT,
-	                            MobilePhone VARCHAR(20),
-	                            Email varchar(60),
-	                            AddDateTime DATETIME,
-	                            UpdateDateTime DATETIME,
-	                            UserType INT
-                            )";
-
-            return DbHelperSQL.ExecuteSql(userTable) > 0;
+            return DBExcute.Insert(insertHelper); 
         }
 
-        public void CheckLogin(string userID, string password) {
-          
+        public bool Update(List<Common.help.WhereItem> whereList, Dictionary<string, dynamic> dicKV) {
+
+            WhereHelper whereHelper = new WhereHelper(whereList);
+
+            UpdateHelper updateHelper = new UpdateHelper(TableName, whereHelper, dicKV);
+            //updateHelper.AddUpdateItem(dicKV);
+
+            return DBExcute.Update(updateHelper);
         }
 
-        public DataTable GetTable() {
-            MyDBHelper.SelectDB.SelectDBParams pParams = new MyDBHelper.SelectDB.SelectDBParams();
-            pParams.TableName = TableName;
-            pParams.Fields = "*";
-            pParams.OrderBy = "id asc";
-            pParams.DicWhere = new Dictionary<string, dynamic>() {{"id", "12"}};
-            MyDBHelper.SelectDB selectDb = new MyDBHelper.SelectDB(pParams);
-            DataTable dt = selectDb.GetTable();
-            return dt;
+        public bool Delete(List<Common.help.WhereItem> wheres) {
+            WhereHelper whereHelper = new WhereHelper(wheres);
+            DeleteHelper deleteHelper = new DeleteHelper(TableName, whereHelper);
+            return DBExcute.Delete(deleteHelper);
         }
 
-        public bool Insert(Dictionary<string, dynamic> dicFileVals) {
-            return InsertOP.Insert(TableName, dicFileVals);
+        public int GetRecordCount(List<Common.help.WhereItem> whereList) {
+            WhereHelper whereHelper = new WhereHelper();
+            foreach (WhereItem where in whereList) {
+                whereHelper.AddWhere(where.Field, where.Sign, where.Value);
+            }
+            SelectHelper selectHelper = new SelectHelper(TableName, "count(1)", whereHelper);
+            int recordCount = DBExcute.GetRecordCount(selectHelper);
+            return recordCount;
         }
 
-        public List<int> InsertBatch(List<Dictionary<string,dynamic>> listDic) {
-            return InsertOP.InsertBatch(TableName, listDic);
+        public DataTable GetDataTable(List<Common.help.WhereItem> whereList,int top) {
+            WhereHelper whereHelper = new WhereHelper(whereList);
+            SelectHelper selectHelper = new SelectHelper(TableName, top, "*", whereHelper);
+            return DBExcute.GetDataTable(selectHelper);
         }
 
-        public int GetRecordCount(string where) {
-            return SelectOP.GetTotalCount(TableName, where);
+        public DataTable GetDataTable(List<Common.help.WhereItem> whereList, int top,string orderBy) {
+            WhereHelper whereHelper = new WhereHelper(whereList);
+            SelectHelper selectHelper = new SelectHelper(TableName, top, "*", whereHelper,orderBy);
+            return DBExcute.GetDataTable(selectHelper);
         }
 
-        public DataTable GetDataTable(string @where) {
-            throw new NotImplementedException();
+        public DataTable GetDataTable(List<Common.help.WhereItem> whereList, int pageSize, int pageIndex, string orderBy) {
+            WhereHelper whereHelper = new WhereHelper(whereList);
+
+            SelectHelper selectHelper = new SelectHelper(TableName, "*", whereHelper, pageIndex, pageSize, orderBy);
+            return DBExcute.GetDataTable(selectHelper);
         }
 
-        public DataTable GetDataTable(string @where, int pageSize, int pageIndex, string order) {
-            return SelectOP.QueryTablePager(TableName, where, pageIndex, pageSize, order);
+        public Model.User_Model GetModel(int ID) {
+            WhereHelper whereHelper = new WhereHelper();
+            whereHelper.AddWhere("ID", "=", ID);
+            SelectHelper selectHelper = new SelectHelper(TableName, "*", whereHelper);
+            Model.User_Model userModel = new User_Model();
+            using (SqlDataReader reader = DBExcute.GetDataReader(selectHelper)) {
+                if (reader.Read()) {
+                    userModel = ReadModel(reader);
+                }
+            }
+            return userModel;
         }
 
-        public bool Delete(string @where) {
-            throw new NotImplementedException();
+        public List<Model.User_Model> GetModels(List<Common.help.WhereItem> whereList, int pageSize, int pageIndex, string orderBy) {
+            List<Model.User_Model> userModels = new List<User_Model>();
+            WhereHelper whereHelper = new WhereHelper(whereList);
+            SelectHelper selectHelper = new SelectHelper(TableName, "*", whereHelper, pageIndex, pageSize, orderBy);
+            using (SqlDataReader reader = DBExcute.GetDataReader(selectHelper)) {
+                while (reader.Read()) {
+                    Model.User_Model userModel = ReadModel(reader);
+                    userModels.Add(userModel);
+                }
+            }
+            return userModels;
         }
 
-        public DataTable GetOne(string @where) {
-            throw new NotImplementedException();
+        public List<Model.User_Model> GetModels(List<Common.help.WhereItem> whereList, int top, string orderBy) {
+            List<Model.User_Model> userModels = new List<User_Model>();
+            WhereHelper whereHelper = new WhereHelper(whereList);
+            SelectHelper selectHelper = new SelectHelper(TableName, "*", whereHelper);
+            using (SqlDataReader reader = DBExcute.GetDataReader(selectHelper)) {
+                while (reader.Read()) {
+                    Model.User_Model userModel = ReadModel(reader);
+                    userModels.Add(userModel);
+                }
+            }
+            return userModels;
         }
 
-        public bool Exist(string @where) {
-            throw new NotImplementedException();
+        public Model.User_Model ReadModel(SqlDataReader reader) {
+            Model.User_Model userModel = new User_Model();
+            userModel.AddDateTime = reader.GetDateTimeEXT("AddDateTime");
+            userModel.Age = reader.GetIntEXT("Age");
+            userModel.Email = reader.GetStringEXT("Email");
+            userModel.ID = reader.GetIntEXT("ID");
+            userModel.MobilePhone = reader.GetStringEXT("MobilePhone");
+            userModel.Name = reader.GetStringEXT("Name");
+            userModel.Sex = reader.GetIntEXT("Sex");
+            userModel.UpdateDateTime = reader.GetDateTimeEXT("UpdateDateTime");
+            userModel.UserID = reader.GetStringEXT("UserID");
+            userModel.UserPassword = reader.GetStringEXT("UserPassword");
+            userModel.UserType = reader.GetIntEXT("UserType");
+
+            return userModel;
         }
 
-        public DataTable ExistModel(string @where,out bool exist) {
-            DataTable dt = SelectOP.QueryTable(TableName, 1, "*", where);
 
-            exist = (dt.Rows.Count > 0);
 
-            return dt;
-        }
     }
 }

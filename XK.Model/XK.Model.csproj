@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B1520F4C-2CC5-4B73-BFA9-6C449A82320D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{68127774-A47F-48F8-8AAC-3729A64BB54F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleAppTest</RootNamespace>
-    <AssemblyName>ConsoleAppTest</AssemblyName>
+    <RootNamespace>XK.Model</RootNamespace>
+    <AssemblyName>XK.Model</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,39 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XK.Bll\XK.Bll.csproj">
-      <Project>{8156bb0c-d0aa-4633-bd5a-a788efec3caa}</Project>
-      <Name>XK.Bll</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XK.Common\XK.Common.csproj">
-      <Project>{a49248a4-5a0e-444b-b95d-a13af3d4a572}</Project>
-      <Name>XK.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XK.Model\XK.Model.csproj">
-      <Project>{68127774-a47f-48f8-8aac-3729a64bb54f}</Project>
-      <Name>XK.Model</Name>
-    </ProjectReference>
+    <Compile Include="User_Model.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

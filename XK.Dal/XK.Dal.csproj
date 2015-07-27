@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{340D10B6-2593-40E3-8F4B-9AD2DA51FDB0}</ProjectGuid>
+    <ProjectGuid>{E2BDA805-EC55-4C93-B1A2-428092FC484F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XK.Dal</RootNamespace>
@@ -34,35 +34,33 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="_Helper\DeleteOP.cs" />
-    <Compile Include="_Helper\InsertOP.cs" />
-    <Compile Include="_Helper\MyDBHelper.cs" />
-    <Compile Include="_Helper\SelectOP.cs" />
-    <Compile Include="_Helper\UpdateOP.cs" />
-    <Compile Include="_Helper\UtilBase\ConnectionHelper.cs" />
-    <Compile Include="_Helper\UtilBase\DbHelperSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User_Dal.cs" />
-    <Compile Include="_Maker\SqlWhereMaker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XK.Common\XK.Common.csproj">
+      <Project>{a49248a4-5a0e-444b-b95d-a13af3d4a572}</Project>
+      <Name>XK.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XK.DBUtil\XK.DBUtil.csproj">
+      <Project>{955fc6c6-591e-4893-b8dd-db1702ef8d44}</Project>
+      <Name>XK.DBUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XK.IDal\XK.IDal.csproj">
       <Project>{2868521f-e4e0-4a83-9484-09906b320bfd}</Project>
       <Name>XK.IDal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XK.Model\XK.Model.csproj">
+      <Project>{68127774-a47f-48f8-8aac-3729a64bb54f}</Project>
+      <Name>XK.Model</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="_SqlScripts\Table.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

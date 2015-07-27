@@ -43,13 +43,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XK.Common\XK.Common.csproj">
+      <Project>{a49248a4-5a0e-444b-b95d-a13af3d4a572}</Project>
+      <Name>XK.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XK.Dal\XK.Dal.csproj">
-      <Project>{340d10b6-2593-40e3-8f4b-9ad2da51fdb0}</Project>
+      <Project>{e2bda805-ec55-4c93-b1a2-428092fc484f}</Project>
       <Name>XK.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\XK.IDal\XK.IDal.csproj">
       <Project>{2868521f-e4e0-4a83-9484-09906b320bfd}</Project>
       <Name>XK.IDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XK.Model\XK.Model.csproj">
+      <Project>{68127774-a47f-48f8-8aac-3729a64bb54f}</Project>
+      <Name>XK.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

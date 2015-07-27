@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+using XK.Common.help;
 
-namespace XK.Dal._Maker {
+namespace XK.DBUtil.Helper {
     /// <summary>
     /// 生成sqlserver的where条件
     /// 并生成SqlParameter[]
     /// </summary>
-    public class SqlWhereMaker {
-
-        public SqlWhereMaker() {
+    public class WhereHelper {
+        public WhereHelper() {
             whereList = new List<string>();
             sqlParameterList = new List<SqlParameter>();
+        }
+
+        public WhereHelper(IEnumerable<WhereItem> wheres)
+            : this() {
+                foreach (WhereItem where in wheres) {
+                AddWhere(where.Field, where.Sign, where.Value);
+            }
         }
 
         private List<string> whereList { get; set; }
@@ -41,4 +45,6 @@ namespace XK.Dal._Maker {
             sqlParameterList.Add(new SqlParameter(string.Format("@{0}", key), value));
         }
     }
+
+
 }
