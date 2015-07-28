@@ -35,6 +35,14 @@ namespace XK.Bll
             return userDal.Insert(userModel);
         }
 
+        public static int InsertTran(List<Model.User_Model> userModels) {
+            return userDal.InsertTran(userModels);
+        }
+
+        public static bool UpdatePwd(Model.User_Model userModel) {
+            return userDal.UpdatePwd(userModel);
+        }
+
         public static bool Update(List<Common.help.WhereItem> whereList,Dictionary<string,dynamic> dicKV) {
             return userDal.Update(whereList, dicKV);
         }

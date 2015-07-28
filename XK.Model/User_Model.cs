@@ -16,5 +16,6 @@ namespace XK.Model {
         public DateTime AddDateTime { get; set; }
         public DateTime UpdateDateTime { get; set; }
         public int UserType { get; set; }
+        public int UserType2 { get; set; }
     }
 }

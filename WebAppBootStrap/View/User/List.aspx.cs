@@ -9,7 +9,7 @@ using XK.Authentication;
 namespace WebAppBS.View.User {
     public partial class List : PageAuth {
         protected void Page_Load(object sender, EventArgs e) {
-
+        
         }
     }
 }

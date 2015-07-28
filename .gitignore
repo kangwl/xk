@@ -77,3 +77,10 @@
 /XK.Model/obj/Debug
 /XK.Model/bin/Debug
 /WebAppBootStrap/log
+/XK.Model/obj/Release
+/XK.DBUtil/obj/Release
+/XK.DBUtil/bin/Release
+/XK.Model/bin/Release
+/Release/Log/event
+/Release/Log/info
+/Release/Log/error

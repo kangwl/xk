@@ -50,7 +50,7 @@ namespace XK.DBUtil.Helper {
             }
         }
 
-        public void AddUpdateItem(string field,string value) {
+        public void AddUpdateItem(string field,dynamic value) {
             if (FieldList == null) {
                 FieldList = new List<string>();
             }

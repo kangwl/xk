@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using XK.Common.help;
 using XK.DBUtil; 
 using XK.DBUtil.Helper;
@@ -13,23 +14,56 @@ namespace XK.Dal {
         public string TableName {
             get { return "[User]"; }
         }
-         
+
         public bool Insert(Model.User_Model userModel) {
-               
+            return DBExcute.Insert(InitInsertHelper(userModel)); 
+        }
+
+        private InsertHelper InitInsertHelper(Model.User_Model userModel) {
             InsertHelper insertHelper = new InsertHelper(TableName);
             insertHelper.AddParam("Name", userModel.Name);
             insertHelper.AddParam("AddDateTime", userModel.AddDateTime);
             insertHelper.AddParam("Age", userModel.Age);
             insertHelper.AddParam("Email", userModel.Email);
             insertHelper.AddParam("MobilePhone", userModel.MobilePhone);
-            insertHelper.AddParam("Name", userModel.Name);
             insertHelper.AddParam("Sex", userModel.Sex);
             insertHelper.AddParam("UpdateDateTime", userModel.UpdateDateTime);
             insertHelper.AddParam("UserID", userModel.UserID);
             insertHelper.AddParam("UserPassword", userModel.UserPassword);
             insertHelper.AddParam("UserType", userModel.UserType);
+            return insertHelper;
+        }
 
-            return DBExcute.Insert(insertHelper); 
+        public int InsertTran(List<Model.User_Model> userModels) {
+            List<InsertHelper> insertHelpers = userModels.Select(InitInsertHelper).ToList();
+            return DBExcute.InsertTran(insertHelpers);
+        }
+
+        public bool Update(Model.User_Model userModel) {
+            WhereHelper whereHelper = new WhereHelper();
+            whereHelper.AddWhere("ID", "=", userModel.ID);
+            UpdateHelper updateHelper = new UpdateHelper(TableName, whereHelper);
+            updateHelper.AddUpdateItem("Name", userModel.Name);
+            updateHelper.AddUpdateItem("AddDateTime", userModel.AddDateTime);
+            updateHelper.AddUpdateItem("Age", userModel.Age);
+            updateHelper.AddUpdateItem("Email", userModel.Email);
+            updateHelper.AddUpdateItem("MobilePhone", userModel.MobilePhone);
+            updateHelper.AddUpdateItem("Name", userModel.Name);
+            updateHelper.AddUpdateItem("Sex", userModel.Sex);
+            updateHelper.AddUpdateItem("UpdateDateTime", userModel.UpdateDateTime);
+            updateHelper.AddUpdateItem("UserID", userModel.UserID);
+            updateHelper.AddUpdateItem("UserPassword", userModel.UserPassword);
+            updateHelper.AddUpdateItem("UserType", userModel.UserType);
+
+            return DBExcute.Update(updateHelper);
+        }
+
+        public bool UpdatePwd(Model.User_Model userModel) {
+            WhereHelper whereHelper = new WhereHelper();
+            whereHelper.AddWhere("UserID", "=", userModel.UserID);
+            UpdateHelper updateHelper = new UpdateHelper(TableName, whereHelper);
+            updateHelper.AddUpdateItem("UserPassword", userModel.UserPassword);
+            return DBExcute.Update(updateHelper);
         }
 
         public bool Update(List<Common.help.WhereItem> whereList, Dictionary<string, dynamic> dicKV) {
@@ -83,6 +117,18 @@ namespace XK.Dal {
             SelectHelper selectHelper = new SelectHelper(TableName, "*", whereHelper);
             Model.User_Model userModel = new User_Model();
             using (SqlDataReader reader = DBExcute.GetDataReader(selectHelper)) {
+                if (reader.Read()) {
+                    userModel = ReadModel(reader);
+                }
+            }
+            return userModel;
+        }
+
+        public Model.User_Model GetModel(List<WhereItem> whereItems) {
+            WhereHelper whereHelper = new WhereHelper(whereItems);
+            SelectHelper selectHelper = new SelectHelper(TableName, 1, "*", whereHelper);
+            Model.User_Model userModel = new User_Model();
+            using (SqlDataReader reader= DBExcute.GetDataReader(selectHelper)) {
                 if (reader.Read()) {
                     userModel = ReadModel(reader);
                 }

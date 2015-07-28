@@ -208,6 +208,8 @@
     z-index: 99;
     background-color: #fff;
     text-align: center;
+    height: 100%;
+    padding-top: 10px;
 }
 
 .fixed-table-body .card-view .title {

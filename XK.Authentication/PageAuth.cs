@@ -11,6 +11,9 @@ namespace XK.Authentication {
                 var retUrl = Request.Url.PathAndQuery;
                 Response.Redirect(LoginLogic.LoginUrl + "?returl=" + retUrl, false);
             }
+            else {
+                base.OnLoad(e);
+            }
         }
 
 

@@ -10,6 +10,7 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using XK.Common.help;
+using XK.Model;
 
 
 namespace ConsoleAppTest {
@@ -65,11 +66,23 @@ namespace ConsoleAppTest {
             //XK.Model.User_Model userModel = XK.Bll.User_Bll.GetModel(5);
             //Console.WriteLine(userModel.Name);
 
-            List<XK.Common.help.WhereItem> whereItems = new List<WhereItem>();
-            whereItems.Add(new WhereItem("ID", "<=", 10));
-            List<XK.Model.User_Model> userModels;
-            userModels = XK.Bll.User_Bll.GetModels(whereItems, 1, 3, "ID ASC");
-            userModels.ForEach(u => Console.WriteLine(u.Name));
+            //List<XK.Common.help.WhereItem> whereItems = new List<WhereItem>();
+            //whereItems.Add(new WhereItem("ID", "<=", 10));
+            //List<XK.Model.User_Model> userModels;
+            //userModels = XK.Bll.User_Bll.GetModels(whereItems, 1, 3, "ID ASC");
+            //userModels.ForEach(u => Console.WriteLine(u.Name));
+            //XK.Model.User_Model user = XK.Bll.User_Bll.GetModel(5);
+            //Console.WriteLine(user.UserPassword);
+
+            List<XK.Model.User_Model> userModels = new List<User_Model>() {
+                new User_Model(){AddDateTime = DateTime.Now,Age = 12,Email = "kangwl2009@163.com",MobilePhone = "1223334",Name = "k5",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2011",UserPassword = "abc123",UserType = 2},
+                new User_Model(){AddDateTime = DateTime.Now,Age = 13,Email = "kangwl2010@163.com",MobilePhone = "122356",Name = "k4",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2012",UserPassword = "abc123",UserType = 2},
+                new User_Model(){AddDateTime = DateTime.Now,Age = 16,Email = "kangwl2011@163.com",MobilePhone = "122321",Name = "k3",Sex = 2,UpdateDateTime = DateTime.Now,UserID = "kwl2013",UserPassword = "abc123",UserType = 2},
+                new User_Model(){AddDateTime = DateTime.Now,Age = 12,Email = "kangwl2012@163.com",MobilePhone = "122677",Name = "k2",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2014",UserPassword = "abc123",UserType = 2}
+            };
+
+            int retIndex = XK.Bll.User_Bll.InsertTran(userModels);
+            Console.WriteLine(retIndex);
             Console.Read();
         }
 

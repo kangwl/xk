@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 
 namespace XK.Core.act {
-    public abstract class ListJsonBase {
+    public abstract class ListJsonBase<T> where T : new() {
         protected ListJsonBase(System.Web.HttpRequest request) {
             Request = request;
         }
@@ -21,11 +21,11 @@ namespace XK.Core.act {
         /// <summary>
         /// 数据
         /// </summary>
-        protected virtual DataTable DataTable { get; set; }
+        protected virtual T Data { get; set; }
 
         public abstract string GetDataJson();
 
-        protected string GetDataJson(int total, DataTable data) {
+        protected string GetDataJson(int total, T data) {
             DataJson jsonObj = new DataJson();
             jsonObj.total = total;
             jsonObj.rows = data;
@@ -80,10 +80,10 @@ namespace XK.Core.act {
 
         private class DataJson {
             public DataJson() {
-                rows = new DataTable();
+                rows = new T();
             }
             public int total { get; set; }
-            public DataTable rows { get; set; }
+            public T rows { get; set; }
         }
     }
 }

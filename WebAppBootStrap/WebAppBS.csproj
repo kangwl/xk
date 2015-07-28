@@ -87,8 +87,10 @@
     <Content Include="Account\_Login.html" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\_Regist.html" />
-    <Content Include="Config\log4net1.xml" />
-    <Content Include="Config\log4net.xml" />
+    <Content Include="Config\log4net_n.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config\log4net_s.xml" />
     <Content Include="Content\bootstrap\datepicker\css\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap\datepicker\css\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap\datepicker\css\bootstrap-datepicker.standalone.css" />
@@ -401,6 +403,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="AppStart\BundleConfig.cs" />
+    <Compile Include="AppStart\Log4net.cs" />
     <Compile Include="Bootstrap.Master.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -586,6 +589,10 @@
     <ProjectReference Include="..\XK.DataApi\XK.DataApi.csproj">
       <Project>{d3e2e40c-d545-4e0c-aa8a-1f2a7bf7406d}</Project>
       <Name>XK.DataApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XK.Model\XK.Model.csproj">
+      <Project>{68127774-a47f-48f8-8aac-3729a64bb54f}</Project>
+      <Name>XK.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\XK.WeiXin\XK.WeiXin.csproj">
       <Project>{3a4d0520-091c-4d9c-8094-c2c4725f1186}</Project>

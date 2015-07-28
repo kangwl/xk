@@ -9,7 +9,8 @@ using XK.Authentication;
 namespace WebAppBS {
     public partial class Index : PageAuth {
         protected void Page_Load(object sender, EventArgs e) {
-
+            int.Parse("sss");
+            
         }
     }
 }

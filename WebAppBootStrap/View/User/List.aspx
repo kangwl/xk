@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="min-height: 300px">
         <div class="panel-heading">
             <div class="panel-title">
                 用户管理

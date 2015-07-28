@@ -14,6 +14,16 @@ namespace XK.DBUtil.Helper {
         public InsertHelper(string table) {
             Table = table;
         }
+        /// <summary>
+        /// 初始化 数据插入实体
+        /// </summary>
+        /// <param name="table">数据库表名</param>
+        /// <param name="dicKV">数据库字段和其对应的值</param>
+        public InsertHelper(string table, Dictionary<string, dynamic> dicKV) : this(table) {
+            foreach (KeyValuePair<string, dynamic> pair in dicKV) {
+                AddParam(pair.Key, pair.Value);
+            }
+        }
 
         private string Table { get; set; }
 

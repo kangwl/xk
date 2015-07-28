@@ -40,7 +40,7 @@
     </script>
   <script>
       $(function () {
-          $("#registform").load("/Account/_Regist.html");
+          
       })
 
   </script>
@@ -55,6 +55,17 @@
         
     </div>
     <script type="text/javascript">
+       // $("#registform").load("/Account/_Regist.html");
+
+        $.ajax({
+            type: "get",
+            url: "/Account/_Regist.html",
+            async: false,
+            error: function () { document.write("出错，刷新重试") },
+            success: function (res) {
+                $("#registform").html(res);
+            }
+        });
         page_loading_process(30);
     </script> 
     </form>

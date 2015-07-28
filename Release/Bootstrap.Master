@@ -26,20 +26,39 @@
         /*页面加载提示 END */
     </style>
     <style>
-         html,body{background:#f1f1f1 url(data:image/gif;base64,R0lGODlhBgAGAIAAAPPz8+bm5iH5BAAAAAAALAAAAAAGAAYAAAIJRI52aroY2lsFADs=); }
+         html,body{font-family:"Microsoft YaHei",微软雅黑,Arial,Verdana !important;background:#f1f1f1 url(data:image/gif;base64,R0lGODlhBgAGAIAAAPPz8+bm5iH5BAAAAAAALAAAAAAGAAYAAAIJRI52aroY2lsFADs=); }
          /*body{ background-color: #A9A9A9}*/
-         #content{ background-color: #ffffff}
+         /*#content{ background-color: #ffffff}*/
+         #content_left .panel-group .panel+.panel{margin-top: 0}
+         #content_left .panel-group .panel {
+             -ms-border-radius: 0;
+             border-radius: 0
+         }
+         #content_left .panel .panel-heading a{display: block}
+         #content_left .panel .panel-heading a:hover{text-decoration: none}
+         #content_left .panel-collapse .panel-title a{ text-decoration: none}
+         #content_left  a span.glyphicon-book{ color: #5F5A5A}
+         #content_left .panel-collapse .panel-body{ padding-top: 10px;padding-bottom: 10px}
+         #content_left .panel-collapse .panel-body ul{margin-bottom: 5px}
+         #content_left .panel-collapse .menu_ul li{ margin-top: 5px;padding-bottom: 5px;padding-top: 5px;border-bottom: 1px solid #ddd}
+         #content_left .panel-collapse .menu_ul li:hover{ /*background-color: #F5F5F5;*/border-bottom: 1px solid #337AB7;color: #000}
+         #content_left .panel-collapse .menu_ul li a{ display: block;text-indent: 2em;text-decoration:none}
     </style>
     <script>
         $(function () {
             page_loading_process(100, function () {
                 $("#page_loading").fadeOut();
             });
+
+            //$("#content .menu_ul").find("li:last").css("border-bottom", "none");
         });
 
         function page_loading_process(percentNum,func) {
             $("#page_loading div").animate({ width: percentNum + "%" },"fast", func);
         }
+        $(document).on("click",function(e) {
+            $(e.target).blur();
+        })
     </script>
 </head>
 <body>
@@ -58,7 +77,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a class="navbar-brand" href="/View/Index.aspx">Brand</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -105,13 +124,71 @@
     <script type="text/javascript">
         page_loading_process(30);
     </script> 
-    <%--<form id="form1" runat="server">--%>
-        <div id="content" class="container" style="padding-bottom: 70px;">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    <div id="content" class="container" style="padding-bottom: 70px;">
+        <div class="row">
+            <div id="content_left" class="col-md-2">
+                <div class="panel-group" id="collapse" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#collapse" href="#collapse-one">
+                                    <span class="glyphicon glyphicon-book"></span> &nbsp;内容管理
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-one" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="menu_ul list-unstyled">
+                                    <li><a href="/View/User/List.aspx">用户管理</a></li>
+                                    <li><a href="/View/User/List.aspx">新闻管理</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#collapse" href="#collapse-two">
+                                    <span class="glyphicon glyphicon-book"></span> &nbsp;菜单2
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-two" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="menu_ul list-unstyled">
+                                    <li><a href="/View/User/List.aspx">用户管理</a></li>
+                                    <li><a href="/View/User/List.aspx">新闻管理</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#collapse" href="#collapse-three">
+                                    <span class="glyphicon glyphicon-book"></span> &nbsp;菜单3
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-three" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="menu_ul list-unstyled">
+                                    <li><a href="/View/User/List.aspx">用户管理</a></li>
+                                    <li><a href="/View/User/List.aspx">新闻管理</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 
-            </asp:ContentPlaceHolder> 
+                </asp:ContentPlaceHolder> 
+            </div>
         </div>
-    <%--</form>--%>
+    </div>
+
     <script type="text/javascript">
         page_loading_process(70);
     </script> 

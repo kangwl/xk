@@ -29,4 +29,5 @@
     $(window).on("resize", function () {
         $table.bootstrapTable('resetView');
     });
+ 
 </script>
