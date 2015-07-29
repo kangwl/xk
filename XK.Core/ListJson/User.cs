@@ -10,6 +10,7 @@ using XK.Core.act;
 namespace XK.Core.ListJson {
     public class User : ListJsonBase<List<XK.Model.User_Model>> {
         public User(HttpRequest request) : base(request) {
+
         }
 
 

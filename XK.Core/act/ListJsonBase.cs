@@ -29,7 +29,7 @@ namespace XK.Core.act {
             DataJson jsonObj = new DataJson();
             jsonObj.total = total;
             jsonObj.rows = data;
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj);
+            string json = Common.json.JsonHelper<DataJson>.Serialize2Object(jsonObj);
             return json;
         }
 

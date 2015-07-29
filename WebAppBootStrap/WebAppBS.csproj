@@ -351,12 +351,16 @@
     <Content Include="Content\bootstrap\tagsinput\examples\index.html" />
     <Content Include="Content\bootstrap\tagsinput\examples\Test.aspx" />
     <Content Include="Content\bootstrap\Test1.aspx" />
+    <Content Include="Content\Css\pagination.css" />
     <Content Include="Content\popup\css\magnific-popup.css" />
     <Content Include="Content\popup\js\jquery.magnific-popup.js" />
     <Content Include="Content\popup\js\jquery.magnific-popup.min.js" />
     <Content Include="Content\popup\Test.aspx" />
     <Content Include="Content\script\bootbox.js" />
     <Content Include="Content\script\bootbox.min.js" />
+    <Content Include="Content\script\jquer.pager.js" />
+    <Content Include="Content\script\jquery.pagination.js" />
+    <Content Include="Content\script\json2template.js" />
     <Content Include="Content\script\tableExport.js" />
     <Content Include="Content\script\bs.alert.js" />
     <Content Include="Content\script\bs.modal.js" />
@@ -366,10 +370,12 @@
     <Content Include="Control\table\BSTable_Page.aspx" />
     <Content Include="Control\table\BSTable_Simple.ascx" />
     <Content Include="Control\table\BSTable_Simple.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
     <Content Include="View\Index.aspx" />
     <Content Include="View\User\List.aspx" />
+    <Content Include="View\User\List1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -404,6 +410,7 @@
     </Compile>
     <Compile Include="AppStart\BundleConfig.cs" />
     <Compile Include="AppStart\Log4net.cs" />
+    <Compile Include="App\ActModelMap.cs" />
     <Compile Include="Bootstrap.Master.cs">
       <DependentUpon>Bootstrap.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -519,6 +526,13 @@
     </Compile>
     <Compile Include="View\User\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\List1.aspx.cs">
+      <DependentUpon>List1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\User\List1.aspx.designer.cs">
+      <DependentUpon>List1.aspx</DependentUpon>
     </Compile>
     <Compile Include="weixin\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

@@ -11,14 +11,20 @@ namespace WebAppBS.Control.table.bsTableCore {
     public class BSTable {
 
         private const string tableTPL = "<table id=\"{0}\"  data-show-columns=\"false\">{1}</table>";
-        private static string theadTPL = "<thead><tr>{0}</tr></thead>";//普通的
+        private const string theadTPL = "<thead><tr>{0}</tr></thead>"; //普通的
+
         /// <summary>
         /// 带checkbox的
         /// </summary>
         private const string theadCheckTPL = "<thead><tr><th data-field=\"state\" data-checkbox=\"true\"></th>{0}</tr></thead>";
-        private static string thead_th_tpl = "<th data-field=\"{0}\">{1}</th>";
 
-        private static string thead_th_sort_tpl = "  <th data-field=\"{0}\" data-sortable=\"true\">{1}</th>";
+        private const string thead_th_tpl = "<th data-field=\"{0}\">{1}</th>";
+
+        private const string thead_th_sort_tpl = "  <th data-field=\"{0}\" data-sortable=\"true\">{1}</th>";
+
+        //最后一列操作列
+        private const string thead_th_operate_tpl =
+            "<th data-field=\"operate\" data-events=\"operateEvents\" data-formatter=\"operateFormatter\">操作</th>";
 
         /// <summary>
         /// 创建 bs table 模型
@@ -44,6 +50,7 @@ namespace WebAppBS.Control.table.bsTableCore {
                 }
                 thBuilder.Append(th);
             }
+            thBuilder.Append(thead_th_operate_tpl);
             string thead = string.Format(hasCheck ? theadCheckTPL : theadTPL, thBuilder.ToString());
             string table = string.Format(tableTPL, bsTableID, thead);
 
