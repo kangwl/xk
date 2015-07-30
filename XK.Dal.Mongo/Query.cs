@@ -74,7 +74,7 @@ namespace XK.Dal.Mongo {
         }
 
         public User_Model  TestMongoDB() {
-
+            
             IMongoCollection<Model.User_Model> userCollection = GetDBCollection<Model.User_Model>("User");
             User_Model user = userCollection.FindOneAndDeleteAsync(u => u.Name == "k5").Result;
             return user;
