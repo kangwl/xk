@@ -12,7 +12,7 @@ namespace XK.Dal.Mongo {
         //mongodb://user:pass@host:port/db
         //mongodb://appharbor_wbxfktsj:k19900606@ds061651.mongolab.com:61651/appharbor_wbxfktsj
         public static async Task<bool> InitMongoDB() {
-            var uri = string.Format("mongodb://{0}:{1}@ds061651.mongolab.com:61651/{2}", "appharbor_wbxfktsj",
+            var uri = string.Format("mongodb://<{0}>:<{1}>@ds061651.mongolab.com:61651/{2}", "appharbor_wbxfktsj",
                 "k19900606", "appharbor_wbxfktsj");
             var client = new MongoDB.Driver.MongoClient(uri);
             var mongoDB = client.GetDatabase("appharbor_wbxfktsj");
