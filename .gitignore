@@ -85,3 +85,6 @@
 /Release/Log/info
 /Release/Log/error
 /Release
+/XK.Dal.Mongo/bin/Debug
+/XK.Dal.Mongo/obj/Debug
+/XK.WeiXin/obj/Debug

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using Newtonsoft.Json;
@@ -74,15 +75,19 @@ namespace ConsoleAppTest {
             //XK.Model.User_Model user = XK.Bll.User_Bll.GetModel(5);
             //Console.WriteLine(user.UserPassword);
 
-            List<XK.Model.User_Model> userModels = new List<User_Model>() {
-                new User_Model(){AddDateTime = DateTime.Now,Age = 12,Email = "kangwl2009@163.com",MobilePhone = "1223334",Name = "k5",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2011",UserPassword = "abc123",UserType = 2},
-                new User_Model(){AddDateTime = DateTime.Now,Age = 13,Email = "kangwl2010@163.com",MobilePhone = "122356",Name = "k4",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2012",UserPassword = "abc123",UserType = 2},
-                new User_Model(){AddDateTime = DateTime.Now,Age = 16,Email = "kangwl2011@163.com",MobilePhone = "122321",Name = "k3",Sex = 2,UpdateDateTime = DateTime.Now,UserID = "kwl2013",UserPassword = "abc123",UserType = 2},
-                new User_Model(){AddDateTime = DateTime.Now,Age = 12,Email = "kangwl2012@163.com",MobilePhone = "122677",Name = "k2",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2014",UserPassword = "abc123",UserType = 2}
-            };
+            //List<XK.Model.User_Model> userModels = new List<User_Model>() {
+            //    new User_Model(){AddDateTime = DateTime.Now,Age = 12,Email = "kangwl2009@163.com",MobilePhone = "1223334",Name = "k5",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2011",UserPassword = "abc123",UserType = 2},
+            //    new User_Model(){AddDateTime = DateTime.Now,Age = 13,Email = "kangwl2010@163.com",MobilePhone = "122356",Name = "k4",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2012",UserPassword = "abc123",UserType = 2},
+            //    new User_Model(){AddDateTime = DateTime.Now,Age = 16,Email = "kangwl2011@163.com",MobilePhone = "122321",Name = "k3",Sex = 2,UpdateDateTime = DateTime.Now,UserID = "kwl2013",UserPassword = "abc123",UserType = 2},
+            //    new User_Model(){AddDateTime = DateTime.Now,Age = 12,Email = "kangwl2012@163.com",MobilePhone = "122677",Name = "k2",Sex = 1,UpdateDateTime = DateTime.Now,UserID = "kwl2014",UserPassword = "abc123",UserType = 2}
+            //};
 
-            int retIndex = XK.Bll.User_Bll.InsertTran(userModels);
-            Console.WriteLine(retIndex);
+            //int retIndex = XK.Bll.User_Bll.InsertTran(userModels);
+            //Console.WriteLine(retIndex);
+
+            Task<bool> success = XK.Dal.Mongo.Query.InitMongoDB();
+            success.Wait();
+            Console.WriteLine(success.Result);
             Console.Read();
         }
 
