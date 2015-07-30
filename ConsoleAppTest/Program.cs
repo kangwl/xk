@@ -11,6 +11,7 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using XK.Common.help;
+using XK.Dal.Mongo;
 using XK.Model;
 
 
@@ -84,16 +85,24 @@ namespace ConsoleAppTest {
 
             //int retIndex = XK.Bll.User_Bll.InsertTran(userModels);
             //Console.WriteLine(retIndex);
-
-            Task<bool> success = XK.Dal.Mongo.Query.InitMongoDB();
-            success.Wait();
-            Console.WriteLine(success.Result);
+            XK.Dal.Mongo.Query query = new Query();
+           // bool success = query.InsertUserModel();
+           // Console.WriteLine(success);
+           //XK.Model.User_Model user= query.TestMongoDB();
+           // Console.WriteLine(user.Name);
+            XK.Model.User_Model user = query.GetUer();
+            if (user == null) {
+                Console.WriteLine("user not exist");
+                Console.Read();
+                return;
+            }
+            Console.WriteLine(user.Name);
+            Console.WriteLine("edb");
             Console.Read();
         }
 
     }
  
-
     public class TestM {
 
         #region 普通 if else 逻辑判断
