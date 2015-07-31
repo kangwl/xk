@@ -88,3 +88,8 @@
 /XK.Dal.Mongo/bin/Debug
 /XK.Dal.Mongo/obj/Debug
 /XK.WeiXin/obj/Debug
+/XK.MongoDBUtil/bin/Debug
+/XK.MongoDBUtil/obj/Debug
+/packages/MongoDB.Driver.2.0.1
+/packages/MongoDB.Bson.2.0.1
+/packages/MongoDB.Driver.Core.2.0.1

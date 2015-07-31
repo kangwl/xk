@@ -5,7 +5,8 @@ using System.Text;
 
 namespace XK.Model {
     public class User_Model {
-        public object _id { get; set; }
+ 
+        public dynamic _id { get; set; }
         public int ID { get; set; }
         public string Name { get; set; }
         public string UserID { get; set; }

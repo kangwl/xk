@@ -7,6 +7,7 @@ using XK.DBUtil.Helper;
 namespace XK.DBUtil {
     /// <summary>
     /// 执行DB操作
+    /// DBDefault 为web.config的连接字符串的配置节点名
     /// </summary>
     public class DBExcute {
         /// <summary>
@@ -15,12 +16,13 @@ namespace XK.DBUtil {
         protected static string connStr =
             System.Configuration.ConfigurationManager.ConnectionStrings["DBDefault"].ConnectionString;
 
-        public static bool Insert(InsertHelper insertHelper) {
-            using (SqlCommand sqlCmd = CreateSqlCmd(insertHelper.Sql, insertHelper.SqlParameters)) {
+        public static bool Insert(InsertHelper insertHelper, string connectionStr="") {
+            using (SqlCommand sqlCmd = CreateSqlCmd(insertHelper.Sql, insertHelper.SqlParameters, connectionStr)) {
                 int ret = sqlCmd.ExecuteNonQuery();
                 return ret > 0;
-            }
+            } 
         }
+
 
         /// <summary>
         /// 事务批量插入 
@@ -28,11 +30,12 @@ namespace XK.DBUtil {
         /// 如果参数insertHelpers的数目和返回值相等，说明全部添加成功
         /// </summary>
         /// <param name="insertHelpers"></param>
+        /// <param name="connectionStr">如果不写默认webconfig配置的节点为DBDefault的连接字符串</param>
         /// <returns>插入成功的个数</returns>
-        public static int InsertTran(List<InsertHelper> insertHelpers) {
+        public static int InsertTran(List<InsertHelper> insertHelpers, string connectionStr="") {
             //记录已成功插入数据的当前索引
             int successCount = 0;
-            using (SqlCommand command = CreateSqlCmd()) {
+            using (SqlCommand command = CreateSqlCmd(connectionStr)) {
                 try {
                     //deal
                     command.Transaction = command.Connection.BeginTransaction();
@@ -55,8 +58,8 @@ namespace XK.DBUtil {
             }
         }
 
-        public static bool Update(UpdateHelper updateHelper) {
-            using (SqlCommand sqlCmd = CreateSqlCmd(updateHelper.Sql, updateHelper.SqlParameters)) {
+        public static bool Update(UpdateHelper updateHelper, string connectionStr = "") {
+            using (SqlCommand sqlCmd = CreateSqlCmd(updateHelper.Sql, updateHelper.SqlParameters,connectionStr)) {
                 int ret = sqlCmd.ExecuteNonQuery();
                 return ret > 0;
             }
@@ -72,11 +75,12 @@ namespace XK.DBUtil {
         /// 默认false，即如果 ExecuteNonQuery 返回值是0（有可能待更新的目标数据不存在）不计入失败
         /// 如果true ，即如果 ExecuteNonQuery 返回值是0则计入失败
         /// </param>
+        /// <param name="connectionStr"></param>
         /// <returns></returns>
-        public static int UpdateTran(List<UpdateHelper> updateHelpers, bool showErrorIfNotExist = false) {
+        public static int UpdateTran(List<UpdateHelper> updateHelpers, bool showErrorIfNotExist = false, string connectionStr = "") {
             //记录已成功更新数据的当前索引
             int successCount = 0;
-            using (SqlCommand command = CreateSqlCmd()) {
+            using (SqlCommand command = CreateSqlCmd(connectionStr)) {
                 try {
                     //deal
                     command.Transaction = command.Connection.BeginTransaction();
@@ -102,8 +106,8 @@ namespace XK.DBUtil {
         }
 
 
-        public static bool Delete(DeleteHelper deleteHelper) {
-            using (SqlCommand sqlCmd = CreateSqlCmd(deleteHelper.Sql, deleteHelper.SqlParameters)) {
+        public static bool Delete(DeleteHelper deleteHelper, string connectionStr = "") {
+            using (SqlCommand sqlCmd = CreateSqlCmd(deleteHelper.Sql, deleteHelper.SqlParameters,connectionStr)) {
                 int ret = sqlCmd.ExecuteNonQuery();
                 return ret > 0;
             }
@@ -119,11 +123,12 @@ namespace XK.DBUtil {
         /// 默认false，即如果ExecuteNonQuery返回值是0（有可能待删除的目标数据不存在）不计入失败
         /// 如果true ，即如果ExecuteNonQuery返回值是0则计入失败
         /// </param>
+        /// <param name="connectionStr"></param>
         /// <returns></returns>
-        public static int DeleteTran(List<DeleteHelper> deleteHelpers, bool showErrorIfNotExist = false) {
+        public static int DeleteTran(List<DeleteHelper> deleteHelpers, bool showErrorIfNotExist = false, string connectionStr = "") {
             //记录已成功删除数据的当前索引
             int successCount = 0;
-            using (SqlCommand command = CreateSqlCmd()) {
+            using (SqlCommand command = CreateSqlCmd(connectionStr)) {
                 try {
                     //deal
                     command.Transaction = command.Connection.BeginTransaction();
@@ -149,9 +154,9 @@ namespace XK.DBUtil {
             }
         }
 
-        public static DataTable GetDataTable(SelectHelper selectHelper) {
+        public static DataTable GetDataTable(SelectHelper selectHelper, string connectionStr = "") {
             DataTable dt = new DataTable();
-            using (SqlCommand sqlCmd = CreateSqlCmd(selectHelper.Sql, selectHelper.SqlParameters)) {
+            using (SqlCommand sqlCmd = CreateSqlCmd(selectHelper.Sql, selectHelper.SqlParameters,connectionStr)) {
                 using (SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCmd)) {
                     dataAdapter.Fill(dt);
                 }
@@ -159,16 +164,16 @@ namespace XK.DBUtil {
             }
         }
 
-        public static SqlDataReader GetDataReader(SelectHelper selectHelper) {
+        public static SqlDataReader GetDataReader(SelectHelper selectHelper, string connectionStr = "") {
             SqlDataReader dataReader;
-            using (SqlCommand sqlCmd = CreateSqlCmd(selectHelper.Sql, selectHelper.SqlParameters)) {
+            using (SqlCommand sqlCmd = CreateSqlCmd(selectHelper.Sql, selectHelper.SqlParameters,connectionStr)) {
                 dataReader = sqlCmd.ExecuteReader();
             }
             return dataReader;
         }
 
-        public static int GetRecordCount(SelectHelper selectHelper) {
-            using (SqlCommand sqlCmd = CreateSqlCmd(selectHelper.Sql, selectHelper.SqlParameters)) {
+        public static int GetRecordCount(SelectHelper selectHelper, string connectionStr = "") {
+            using (SqlCommand sqlCmd = CreateSqlCmd(selectHelper.Sql, selectHelper.SqlParameters,connectionStr)) {
                 object obj = sqlCmd.ExecuteScalar();
                 return obj.ToInt();
             }
@@ -176,17 +181,17 @@ namespace XK.DBUtil {
 
         #region 基础方法
 
-        private static SqlCommand CreateSqlCmd(string sqlText, SqlParameter[] sqlParameters) {
-            SqlCommand sqlCmd = CreateSqlCmd();
+        private static SqlCommand CreateSqlCmd(string sqlText, SqlParameter[] sqlParameters, string connectionStr = "") {
+            SqlCommand sqlCmd = CreateSqlCmd(connectionStr);
             sqlCmd.CommandText = sqlText;
             sqlCmd.Parameters.AddRange(sqlParameters);
             return sqlCmd;
         }
 
-        private static SqlCommand CreateSqlCmd() {
+        private static SqlCommand CreateSqlCmd(string connectionStr = "") {
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.Connection = new SqlConnection(connStr);
+            sqlCmd.Connection = new SqlConnection(string.IsNullOrWhiteSpace(connectionStr) ? connStr : connectionStr);
             sqlCmd.Connection.Open();
 
             return sqlCmd;

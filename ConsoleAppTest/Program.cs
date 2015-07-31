@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,8 +13,8 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using XK.Common.help;
-using XK.Dal.Mongo;
 using XK.Model;
+using XK.MongoDBUtil;
 
 
 namespace ConsoleAppTest {
@@ -85,19 +87,64 @@ namespace ConsoleAppTest {
 
             //int retIndex = XK.Bll.User_Bll.InsertTran(userModels);
             //Console.WriteLine(retIndex);
-            XK.Dal.Mongo.Query query = new Query();
+           // XK.Dal.Mongo.Query query = new Query();
            // bool success = query.InsertUserModel();
            // Console.WriteLine(success);
            //XK.Model.User_Model user= query.TestMongoDB();
            // Console.WriteLine(user.Name);
-            XK.Model.User_Model user = query.GetUer();
-            if (user == null) {
-                Console.WriteLine("user not exist");
-                Console.Read();
-                return;
-            }
-            Console.WriteLine(user.Name);
-            Console.WriteLine("edb");
+            //XK.Model.User_Model user = query.GetUer();
+            //if (user == null) {
+            //    Console.WriteLine("user not exist");
+            //    Console.Read();
+            //    return;
+            //}
+            //Console.WriteLine(user.Name);
+            //Console.WriteLine("edb");
+
+            MongoDBHelper<XK.Model.User_Model> dbHelper=new MongoDBHelper<User_Model>("User");
+            //User_Model user = new User_Model() {
+            //    _id =Guid.NewGuid(),
+            //    AddDateTime = DateTime.Now,
+            //    Age = 12,
+            //    Email = "kangwl2009@163.com",
+            //    MobilePhone = "1223334",
+            //    Name = "k1199",
+            //    Sex = 1,
+            //    UpdateDateTime = DateTime.Now,
+            //    UserID = "kwl2011",
+            //    UserPassword = "abc123",
+            //    UserType = 2
+            //};
+            //Task t = dbHelper.DbExcute.Add(user);
+            //Console.WriteLine(t.IsCompleted);
+            //t.Wait();
+            //Console.WriteLine(t.IsCompleted);
+
+            //Task<User_Model> usertTask = dbHelper.DbExcute.Get(U => U.Name == "k555");
+            //usertTask.Wait();
+            //Console.WriteLine(usertTask.Result.Name);
+            //list
+            //Task<List<User_Model>> userModelsTask = dbHelper.DbExcute.GetList(u => u.Age < 220);
+            //userModelsTask.Result.ForEach(u => Console.WriteLine(u.Name));
+
+           // dbHelper.DbExcute.GetListAction(u => u.Age < 222, (userm) => Console.WriteLine(userm.Name));
+
+            //Task<List<User_Model>> userModelsTask = dbHelper.DbExcute.GetPaged(u => u.Age < 222, 2, 2, m => m.Name, false);
+            //userModelsTask.Result.ForEach(u => Console.WriteLine(u.Name));
+
+            Task<User_Model> user1 = dbHelper.DbExcute.Get(u => u.Name == "k77711");
+            user1.Wait();
+
+            Console.WriteLine(user1.Result == null ? "" : user1.Result.Name);
+
+            //List<User_Model> users=new List<User_Model>();
+            //users.Add(user);
+            //bool success = dbHelper.DbExcute.Update(u => u.Name == "k77711", users);
+            //Console.WriteLine(success);
+
+         
+            Console.WriteLine("end");
+
             Console.Read();
         }
 
