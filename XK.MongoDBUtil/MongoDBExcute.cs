@@ -39,15 +39,10 @@ namespace XK.MongoDBUtil {
         }
 
         public Task<TModel> Get(Expression<Func<TModel, bool>> filter) {
-            Task<long> countTask = MongoCollection.CountAsync(filter);
-            if (countTask.Result < 1) return null;
             return MongoCollection.Find(filter).SingleOrDefaultAsync();
         }
 
-        public Task<List<TModel>> GetList(Expression<Func<TModel, bool>> filter, object action) {
-            Task<IAsyncCursor<TModel>> asyncCursorTask = MongoCollection.FindAsync(filter);
-            return asyncCursorTask.Result.ToListAsync();
-        }
+ 
 
         public void GetListAction(Expression<Func<TModel, bool>> filter, Action<TModel> action) {
             Task<IAsyncCursor<TModel>> asyncCursorRask = MongoCollection.FindAsync(filter);

@@ -132,7 +132,7 @@ namespace ConsoleAppTest {
             //Task<List<User_Model>> userModelsTask = dbHelper.DbExcute.GetPaged(u => u.Age < 222, 2, 2, m => m.Name, false);
             //userModelsTask.Result.ForEach(u => Console.WriteLine(u.Name));
 
-            Task<User_Model> user1 = dbHelper.DbExcute.Get(u => u.Name == "k77711");
+            Task<User_Model> user1 = dbHelper.DbExcute.Get(u => u.Name == "k1199");
             user1.Wait();
 
             Console.WriteLine(user1.Result == null ? "" : user1.Result.Name);
