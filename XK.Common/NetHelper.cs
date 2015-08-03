@@ -23,6 +23,18 @@ namespace XK.Common {
                return true;
            return false;
        }
+
+       public static long PingTime(string ip, int timeout=5000) {
+           IPAddress ipadd;
+           if (!IPAddress.TryParse(ip, out ipadd)) {
+               return timeout;
+           }
+           Ping pingSender = new Ping();
+           PingReply reply = pingSender.Send(ip, timeout, new Byte[] { Convert.ToByte(1) });
+           if (reply != null && reply.Status == IPStatus.Success)
+               return reply.RoundtripTime;
+           return timeout;
+       }
        
    }
 }

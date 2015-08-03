@@ -12,6 +12,7 @@ using System.Web;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using XK.Common;
 using XK.Common.help;
 using XK.Model;
 using XK.MongoDBUtil;
@@ -26,19 +27,20 @@ namespace ConsoleAppTest {
             //Console.WriteLine("end");
             //Console.Read();
 
-//                 string xmlSend = @"<xml>
-//                            <ToUserName><![CDATA[123]]></ToUserName>
-//                            <FromUserName><![CDATA[2]]></FromUserName>
-//                            <CreateTime>123</CreateTime>
-//                            <MsgType><![CDATA[text]]></MsgType>
-//                            <Content><![CDATA[333]]></Content>
-//                            </xml>";
-//            XmlDocument xmldoc = new XmlDocument();
-//            xmldoc.LoadXml(xmlSend);
-//            string a = XK.Common.XmlHelper.GetXmlNodeTextByXpath(xmldoc, "//ToUserName");
-//            Console.WriteLine(a);
-//            Console.WriteLine("end");
-//            Console.Read();
+            //       string xmlSend = @"<xml>
+            //                  <ToUserName><![CDATA[123]]></ToUserName>
+            //                  <FromUserName><![CDATA[2]]></FromUserName>
+            //                  <CreateTime>123</CreateTime>
+            //                  <MsgType><![CDATA[text]]></MsgType>
+            //                  <Content><![CDATA[333]]></Content>
+            //                  </xml>";
+            //  XmlDocument xmldoc = new XmlDocument();
+            //  xmldoc.LoadXml(xmlSend);
+            //  string a = XK.Common.XmlHelper.GetXmlNodeTextByXpath(xmldoc, "//ToUserName");
+            //  Console.WriteLine(a);
+            //  Console.WriteLine("end");
+            //  Console.Read();
+
             //XK.Common.web.HttpWebHelper webHelper = new HttpWebHelper("http://sd");
             //string res = webHelper.GetResponseStr();
             //int firstIndex = res.IndexOf('{');
@@ -132,23 +134,69 @@ namespace ConsoleAppTest {
             //Task<List<User_Model>> userModelsTask = dbHelper.DbExcute.GetPaged(u => u.Age < 222, 2, 2, m => m.Name, false);
             //userModelsTask.Result.ForEach(u => Console.WriteLine(u.Name));
 
-            Task<User_Model> user1 = dbHelper.DbExcute.Get(u => u.Name == "k1199");
-            user1.Wait();
+            //Task<User_Model> user1 = dbHelper.DbExcute.Get(u => u.Name == "k1199");
+            //user1.Wait();
 
-            Console.WriteLine(user1.Result == null ? "" : user1.Result.Name);
+            //Console.WriteLine(user1.Result == null ? "" : user1.Result.Name);
 
             //List<User_Model> users=new List<User_Model>();
             //users.Add(user);
             //bool success = dbHelper.DbExcute.Update(u => u.Name == "k77711", users);
             //Console.WriteLine(success);
 
-         
-            Console.WriteLine("end");
+            //Console.WriteLine("main thread start");
+            //Task<string> task = GetName();
+           
+            //Console.WriteLine("main thread do some");
+            //Console.WriteLine("name thread start");
 
+            //Console.WriteLine(task.Result);
+
+            //Console.WriteLine("end");
+
+            List<string> ips=new List<string> {
+                "98.126.50.92",
+                "100.43.170.19",
+                "98.126.46.227",
+                "98.126.63.251",
+                "174.139.1.11",
+                "174.139.176.35",
+                "174.139.248.124",
+                "103.228.92.203",
+                "103.228.92.204",
+                "103.228.92.205",
+                "103.228.92.210",
+                "103.228.92.211"
+            };
+            Dictionary<string, long> dicIP = new Dictionary<string, long>();
+
+            ips.ForEach(ip => {
+                long millsecond = XK.Common.NetHelper.PingTime(ip, 1000*5);
+                dicIP.Add(ip, millsecond);
+            });
+
+            //找出最快的
+            var dicIPSort = dicIP.OrderBy(pair => pair.Key);
+            dicIPSort.ToList().ForEach(ip => Console.WriteLine(ip.Key));
+
+         
+
+            Console.WriteLine("red");
             Console.Read();
         }
 
+
+
+        public static async Task<string> GetName() {
+            string result = await Task<string>.Factory.StartNew(() => "kangwl");
+            return result;
+        }
+ 
+
+
     }
+
+
  
     public class TestM {
 
