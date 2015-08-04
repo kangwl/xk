@@ -176,8 +176,8 @@ namespace ConsoleAppTest {
             });
 
             //找出最快的
-            var dicIPSort = dicIP.OrderBy(pair => pair.Key);
-            dicIPSort.ToList().ForEach(ip => Console.WriteLine(ip.Key));
+            var dicIPSort = dicIP.OrderBy(pair => pair.Value);
+            dicIPSort.ToList().ForEach(pair => Console.WriteLine(pair.Key + "---" + pair.Value));
 
          
 

@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 
 namespace MyVPN {
-    public class ServerIPS {
+    public static class ServerIPS {
         public static string GetFastOne() {
             List<string> ips = new List<string> {
                 "98.126.50.92",
@@ -29,9 +29,10 @@ namespace MyVPN {
             });
 
             //找出最快的
-            var dicIPSort = dicIP.OrderBy(pair => pair.Key);
+            var dicIPSort = dicIP.OrderBy(pair => pair.Value);
+           // dicIPSort.ToList().ForEach(pair => Console.WriteLine(pair.Key + "---" + pair.Value));
 
-            return dicIPSort.FirstOrDefault().Key;
+            return dicIPSort.First().Key;
         }
 
         public static long PingTime(string ip, int timeout = 5000) {
