@@ -109,3 +109,7 @@
 /XK.WeiXin/obj/Release
 /XK.MongoDBUtil/obj/Release
 /XK.DataApi/obj/Release
+/VPNManage/bin/Debug
+/VPNManage/obj/Debug
+/XK.Dal.Mongo/bin/Release
+/XK.MongoDBUtil/bin/Release

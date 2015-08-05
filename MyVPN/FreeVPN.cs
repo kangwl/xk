@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms; 
@@ -16,98 +18,92 @@ namespace MyVPN {
         private const string userName = "qiyuvpn";
         private const string password = "123456";
 
+
         private MyVPN.VPNCore GetVPNIns() {
-            //找出延迟最低的服务地址
-            object country = comboBox_Country.SelectedItem;
-            ServerIPS.Country c = (ServerIPS.Country) country;
-            string fastOne = ServerIPS.GetFastOne(c);
-            
+            //找出延迟最低的服务地址  
+            string fastOne = ServerIPS.GetFastOne();
+
             return new VPNCore(vpnName, fastOne, userName, password);
         }
 
+        private MyVPN.VPNCore GetVPNIns(string ip) {
+  
+            return new VPNCore(vpnName, ip, userName, password);
+        }
+
         private MyVPN.VPNCore GetVPNInsExcept() {
-            //找出延迟最低的服务地址
-            object country = comboBox_Country.SelectedItem;
-            ServerIPS.Country c = (ServerIPS.Country)country;
-            string fastOne = ServerIPS.GetNewFastIPByExceptIP(errIPs, c);
+            //找出延迟最低的服务地址  
+            string fastOne = ServerIPS.GetNewFastIPByExceptIP(errIPs);
 
             return new VPNCore(vpnName, fastOne, userName, password);
+        }
+        private MyVPN.VPNCore GetVPNInsExcept(string ip) {
+ 
+            return new VPNCore(vpnName, ip, userName, password);
         }
 
         private MyVPN.VPNCore vpnCore = null;
 
         public FreeVPN() {
-            InitializeComponent();
-            comboBox_Country.Visible = false;
-            InitCountry();
+            InitializeComponent(); 
             this.Text = text;
             CheckForIllegalCrossThreadCalls = false;
-            richTextBox1.HideSelection = false; 
-        }
+            richTextBox1.HideSelection = false;
 
-        private void InitCountry() {
-            comboBox_Country.Items.Add(ServerIPS.Country.All);
-            comboBox_Country.Items.Add(ServerIPS.Country.America);
-            comboBox_Country.Items.Add(ServerIPS.Country.Japan);
-            comboBox_Country.Items.Add(ServerIPS.Country.HongKong);
-            comboBox_Country.SelectedIndex = 0;
         }
+ 
         
-
         public System.Threading.Timer Interval { get; set; }
         private Thread thread = null;
         private void btn_GO_Click(object sender, EventArgs e) {
             thread = new Thread(DealDial);
             thread.Start();
             //每8分钟断掉重连一次
-            Interval = new System.Threading.Timer(d => Reconnect(), null, 7 * 60 * 1000, 8 * 60 * 1000);
+            //Interval = new System.Threading.Timer(d => Reconnect(), null, 1 * 60 * 1000, 8 * 60 * 1000);
         }
 
+        //失败重连
+        private void ConnectException() {
+            AppendMessage("连接失败,重试中...");
+            ChangeTitle("连接重试...");
+            ShowNotify("失败，重连中...", ToolTipIcon.Error);
+            Thread.Sleep(3000);
+            AddErrIPS(vpnCore.ServerIP);
+            Reconnect();
+        }
+  
         //开始拨号
         private void DealDial() {
             try {
-                 
-                AppendMessage("连接中...");
+                AppendMessage("查找 IP ...");
+                //找出延迟最低的服务地址  
+                string fastOne = ServerIPS.GetFastOne();
+                AppendMessage(string.Format("已找到 IP {0},连接中...", fastOne)); 
                 ChangeTitle("连接中...");
-                vpnCore = GetVPNIns();//
+                vpnCore = GetVPNIns(fastOne);//
                 vpnCore.Dial();
                 vpnCore.DialState = AppendMessage;
                 vpnCore.DialError = AppendMessage;
-
-                AppendMessage("已连接");
+                AppendMessage(string.Concat("已连接 ", vpnCore.ServerIP));
                 ChangeTitle("已连接");
-
-                #region 当拨号为异步时 
-                //vpnCore.DialComplete = completeArg => {
-                //    if (completeArg.Connected) {
-                //        //success
-                //        AppendMessage("已连接");
-                //    }
-                //    else {
-                //        AppendMessage("连接失败,重试中...");
-                //        CloseVPN();
-                //        vpnCore.Dial();
-                //    }
-                //};
-
-                #endregion
-
+                
             }
             catch (Exception) {
-                AppendMessage("连接失败,重试中...");
-                ChangeTitle("连接重试...");
-                Thread.Sleep(3000);
-                AddErrIPS(vpnCore.ServerIP);
-                Reconnect();
+               ConnectException();
             }
         }
+
+
         //重连
         private void Reconnect() {
+
             Task.Factory.StartNew(() => {
+
                 CloseVPN(); //关掉
                 ReDealDial(); //连接
             });
         }
+ 
 
         private List<string> errIPs = new List<string>();
 
@@ -119,28 +115,26 @@ namespace MyVPN {
 
         private void ReDealDial() {
             try {
-
-                AppendMessage("连接中...");
+                AppendMessage("查找 IP ...");
+                string fastOne = ServerIPS.GetFastOne();//不用上次失败的IP地址
+                AppendMessage(string.Format("已找到 IP {0},连接中...", fastOne)); 
                 ChangeTitle("连接中...");
-                vpnCore = GetVPNInsExcept();//
+                vpnCore = GetVPNInsExcept(fastOne);
                 vpnCore.Dial();
                 vpnCore.DialState = AppendMessage;
                 vpnCore.DialError = AppendMessage;
                 errIPs.Clear();
-                AppendMessage("已连接");
-                ChangeTitle("已连接");
-
+                AppendMessage(string.Concat("已连接 ", vpnCore.ServerIP));
+                ChangeTitle("已连接"); 
             }
             catch (Exception) {
-                AppendMessage("连接失败,重试中...");
-                ChangeTitle("连接重试...");
-                Thread.Sleep(3000);
-                AddErrIPS(vpnCore.ServerIP);
-                Reconnect();
+                ConnectException();
             }
         }
+
         //关闭释放vpn
         private void CloseVPN() {
+            if (vpnCore == null) return;
             AppendMessage("关闭中，请等待...");
             ChangeTitle("关闭中...");
             vpnCore.CloseAcrion = AppendMessage;
@@ -161,9 +155,58 @@ namespace MyVPN {
             richTextBox1.AppendText(message + Environment.NewLine);
             richTextBox1.Focus();
         }
+ 
 
-        private void comboBox_Country_SelectedIndexChanged(object sender, EventArgs e) {
-           // MessageBox.Show("ss");
+        //toolstrip
+
+        private void FreeVPN_SizeChanged(object sender, EventArgs e) {
+            if (this.WindowState == FormWindowState.Minimized) //判断是否最小化
+            {
+                this.ShowInTaskbar = false; //不显示在系统任务栏
+                notifyIcon1.Visible = true; //托盘图标可见
+                ShowNotify("我在这里运行。", ToolTipIcon.Info, 2);
+            }
         }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e) {
+           FormShow();
+        }
+
+        private void ShowNotify(string msg,ToolTipIcon icon=ToolTipIcon.Info, int timeout = 3) {
+            notifyIcon1.BalloonTipIcon = icon;
+            notifyIcon1.BalloonTipTitle = "提示";
+            notifyIcon1.BalloonTipText = msg;
+            notifyIcon1.ShowBalloonTip(3000);
+        }
+
+        private void Exit_ToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+         
+
+        private void Show_ToolStripMenuItem_Click(object sender, EventArgs e) {
+            FormShow();
+        }
+
+        private void FormShow() {
+            this.ShowInTaskbar = true;  //显示在系统任务栏
+            this.WindowState = FormWindowState.Normal;  //还原窗体
+            notifyIcon1.Visible = false;  //托盘图标隐藏
+        }
+
+        private void FreeVPN_FormClosing(object sender, FormClosingEventArgs e) {
+            DialogResult result = MessageBox.Show("确定退出？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes) {
+                //关闭
+                ShowNotify("退出中，请稍后", ToolTipIcon.Warning);
+               // CloseVPN();
+            }
+            else {
+                e.Cancel = true;
+            }
+        }
+
+     
+
     }
 }

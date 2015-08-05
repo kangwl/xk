@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using DotRas;
 
 namespace MyVPN {
@@ -53,7 +54,8 @@ namespace MyVPN {
             // 如果已经该名称的PPPOE已经存在，则更新这个PPPOE服务器地址
             if (phoneBook.Entries.Contains(EntryName)) {
                 // phoneBook.Entries[EntryName].Options.RemoteDefaultGateway
-                //phoneBook.Entries[EntryName].Update();
+                phoneBook.Entries[EntryName].PhoneNumber = ServerIP;
+                phoneBook.Entries[EntryName].Update();
 
                 return;
             }
@@ -77,6 +79,7 @@ namespace MyVPN {
             // Add the new entry to the phone book.
             this.phoneBook.Entries.Add(entry);
         }
+ 
 
         private RasDialer dialer = new RasDialer();
         /// <summary>
@@ -87,7 +90,9 @@ namespace MyVPN {
         /// start
         /// </summary>
         public void Dial() {
-            InitEntry();
+            InitEntry(); 
+            this.dialer.Options.DisableConnectedUI = true;
+           
             dialer.StateChanged += dialer_StateChanged;
             dialer.Error += dialer_Error;
             dialer.DialCompleted += dialer_DialCompleted;
@@ -100,9 +105,19 @@ namespace MyVPN {
             // Set the credentials the dialer should use.
             this.dialer.Credentials = new NetworkCredential(UserName, PassWord);
 
+            this.dialer.AllowUseStoredCredentials = true;
+            this.dialer.AutoUpdateCredentials = RasUpdateCredential.AllUsers;
             // NOTE: The entry MUST be in the phone book before the connection can be dialed.
             // Begin dialing the connection; this will raise events from the dialer instance.
             this.handle = this.dialer.Dial();
+            while (handle.IsInvalid) {
+                Thread.Sleep(10000);
+                ServerIP = ServerIPS.GetFastOne();
+                handle = dialer.Dial();
+            }
+            if (!handle.IsInvalid) {
+                //_log.Info("RasDialer Success! " + Convert.ToString(DateTime.Now));
+            }
         }
 
         public void UpdateConn() {
@@ -123,6 +138,7 @@ namespace MyVPN {
                 if (this.dialer.IsBusy) {
                     // The connection attempt has not been completed, cancel the attempt.
                     this.dialer.DialAsyncCancel();
+                    
                 }
                 else {
                     if (this.handle != null) {

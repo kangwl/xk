@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 
 namespace MyVPN {
-    public   class ServerIPS {
+    public class ServerIPS {
         //all
         public static string GetFastOne() {
 
@@ -63,8 +63,8 @@ namespace MyVPN {
             return ips;
         }
 
-        public static string GetNewFastIPByExceptIP(List<string> ipList, Country country) {
-            List<string> ips = GetFastSortedIPs(country);
+        public static string GetNewFastIPByExceptIP(List<string> ipList) {
+            List<string> ips = GetFastSortedIPs(Country.All);
             ipList.ForEach(ip => ips.Remove(ip));
             return ips.First();
         }
