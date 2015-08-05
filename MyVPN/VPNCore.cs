@@ -119,13 +119,7 @@ namespace MyVPN {
                 //_log.Info("RasDialer Success! " + Convert.ToString(DateTime.Now));
             }
         }
-
-        public void UpdateConn() {
-            ReadOnlyCollection<RasConnection> rasConnections = RasConnection.GetActiveConnections();
-            foreach (RasConnection connection in rasConnections) {
-                connection.UpdateConnection(1, IPAddress.Loopback, IPAddress.Parse(ServerIP));
-            }
-        }
+ 
 
         public Action<string> CloseAcrion;
 
