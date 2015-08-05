@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms; 
@@ -16,39 +17,50 @@ namespace MyVPN {
         private const string password = "123456";
 
         private MyVPN.VPNCore GetVPNIns() {
-            return new VPNCore(vpnName, FastServerTask().Result, userName, password);
+            //找出延迟最低的服务地址
+            object country = comboBox_Country.SelectedItem;
+            ServerIPS.Country c = (ServerIPS.Country) country;
+            string fastOne = ServerIPS.GetFastOne(c);
+            
+            return new VPNCore(vpnName, fastOne, userName, password);
+        }
+
+        private MyVPN.VPNCore GetVPNInsExcept() {
+            //找出延迟最低的服务地址
+            object country = comboBox_Country.SelectedItem;
+            ServerIPS.Country c = (ServerIPS.Country)country;
+            string fastOne = ServerIPS.GetNewFastIPByExceptIP(errIPs, c);
+
+            return new VPNCore(vpnName, fastOne, userName, password);
         }
 
         private MyVPN.VPNCore vpnCore = null;
 
         public FreeVPN() {
             InitializeComponent();
+            comboBox_Country.Visible = false;
+            InitCountry();
             this.Text = text;
             CheckForIllegalCrossThreadCalls = false;
-            richTextBox1.HideSelection = false;
-            FastServerTask();//用任务加速首次启动速度
+            richTextBox1.HideSelection = false; 
         }
 
-        //找出延迟最低的服务地址
-        public string ServerIP {
-            get { return FastServerTask().Result; }
+        private void InitCountry() {
+            comboBox_Country.Items.Add(ServerIPS.Country.All);
+            comboBox_Country.Items.Add(ServerIPS.Country.America);
+            comboBox_Country.Items.Add(ServerIPS.Country.Japan);
+            comboBox_Country.Items.Add(ServerIPS.Country.HongKong);
+            comboBox_Country.SelectedIndex = 0;
         }
-
-        public Task<string> FastServerTask() {
-            return Task<string>.Factory.StartNew(ServerIPS.GetFastOne);
-        }
-
-        // public string FastServerIP { get; set; }
+        
 
         public System.Threading.Timer Interval { get; set; }
         private Thread thread = null;
         private void btn_GO_Click(object sender, EventArgs e) {
-            thread = new Thread(() => {
-                DealDial();
-                //每8分钟断掉重连一次
-                Interval = new System.Threading.Timer(d => Reconnect(), null, 1*60*1000, 3*60*1000);
-            });
+            thread = new Thread(DealDial);
             thread.Start();
+            //每8分钟断掉重连一次
+            Interval = new System.Threading.Timer(d => Reconnect(), null, 7 * 60 * 1000, 8 * 60 * 1000);
         }
 
         //开始拨号
@@ -84,6 +96,8 @@ namespace MyVPN {
             catch (Exception) {
                 AppendMessage("连接失败,重试中...");
                 ChangeTitle("连接重试...");
+                Thread.Sleep(3000);
+                AddErrIPS(vpnCore.ServerIP);
                 Reconnect();
             }
         }
@@ -91,8 +105,39 @@ namespace MyVPN {
         private void Reconnect() {
             Task.Factory.StartNew(() => {
                 CloseVPN(); //关掉
-                DealDial(); //连接
+                ReDealDial(); //连接
             });
+        }
+
+        private List<string> errIPs = new List<string>();
+
+        private void AddErrIPS(string ip) {
+            if (!errIPs.Contains(ip)) {
+                errIPs.Add(ip);
+            }
+        }
+
+        private void ReDealDial() {
+            try {
+
+                AppendMessage("连接中...");
+                ChangeTitle("连接中...");
+                vpnCore = GetVPNInsExcept();//
+                vpnCore.Dial();
+                vpnCore.DialState = AppendMessage;
+                vpnCore.DialError = AppendMessage;
+                errIPs.Clear();
+                AppendMessage("已连接");
+                ChangeTitle("已连接");
+
+            }
+            catch (Exception) {
+                AppendMessage("连接失败,重试中...");
+                ChangeTitle("连接重试...");
+                Thread.Sleep(3000);
+                AddErrIPS(vpnCore.ServerIP);
+                Reconnect();
+            }
         }
         //关闭释放vpn
         private void CloseVPN() {
@@ -115,6 +160,10 @@ namespace MyVPN {
         private void AppendMessage(string message) {
             richTextBox1.AppendText(message + Environment.NewLine);
             richTextBox1.Focus();
+        }
+
+        private void comboBox_Country_SelectedIndexChanged(object sender, EventArgs e) {
+           // MessageBox.Show("ss");
         }
     }
 }

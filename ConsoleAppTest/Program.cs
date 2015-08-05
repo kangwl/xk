@@ -154,20 +154,7 @@ namespace ConsoleAppTest {
 
             //Console.WriteLine("end");
 
-            List<string> ips=new List<string> {
-                "98.126.50.92",
-                "100.43.170.19",
-                "98.126.46.227",
-                "98.126.63.251",
-                "174.139.1.11",
-                "174.139.176.35",
-                "174.139.248.124",
-                "103.228.92.203",
-                "103.228.92.204",
-                "103.228.92.205",
-                "103.228.92.210",
-                "103.228.92.211"
-            };
+            List<string> ips = ServerIPS.HongKongList();
             Dictionary<string, long> dicIP = new Dictionary<string, long>();
 
             ips.ForEach(ip => {

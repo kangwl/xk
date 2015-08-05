@@ -27,6 +27,7 @@
             this.btn_GO = new System.Windows.Forms.Button();
             this.btn_Discconnect = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.comboBox_Country = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btn_GO
@@ -57,11 +58,21 @@
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
+            // comboBox_Country
+            // 
+            this.comboBox_Country.FormattingEnabled = true;
+            this.comboBox_Country.Location = new System.Drawing.Point(29, 6);
+            this.comboBox_Country.Name = "comboBox_Country";
+            this.comboBox_Country.Size = new System.Drawing.Size(206, 20);
+            this.comboBox_Country.TabIndex = 3;
+            this.comboBox_Country.SelectedIndexChanged += new System.EventHandler(this.comboBox_Country_SelectedIndexChanged);
+            // 
             // FreeVPN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 211);
+            this.Controls.Add(this.comboBox_Country);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btn_Discconnect);
             this.Controls.Add(this.btn_GO);
@@ -77,5 +88,6 @@
         private System.Windows.Forms.Button btn_GO;
         private System.Windows.Forms.Button btn_Discconnect;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ComboBox comboBox_Country;
     }
 }
