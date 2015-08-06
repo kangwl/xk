@@ -385,6 +385,8 @@
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
     <Content Include="MongoDBWeb\Test\default.aspx" />
+    <Content Include="Prox\go.aspx" />
+    <Content Include="Prox\inner.aspx" />
     <Content Include="View\Index.aspx" />
     <Content Include="View\User\List.aspx" />
     <Content Include="View\User\List1.aspx" />
@@ -530,6 +532,20 @@
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prox\go.aspx.cs">
+      <DependentUpon>go.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prox\go.aspx.designer.cs">
+      <DependentUpon>go.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prox\inner.aspx.cs">
+      <DependentUpon>inner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prox\inner.aspx.designer.cs">
+      <DependentUpon>inner.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewHandler\User.ashx.cs">
       <DependentUpon>User.ashx</DependentUpon>
     </Compile>
