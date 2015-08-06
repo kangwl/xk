@@ -8,20 +8,17 @@
     <title></title>
     <script src="/Content/script/jquery-1.9.1.min.js"></script>
     <script>
-        $(document).on("click", "#btn_go", function () {
-            var src = $("#txt_site").val();
-            $("<iframe src=" + src + " width='100%' height='100%'></iframe>").appendTo($("#content"));
-        })
+   
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="toolbar">
-        <input id="txt_site" type="text"/><input id="btn_go" type="button" value="GO"/>
-    </div>
-        <div id="content" style="height: 100%;min-height: 400px;width: 100%">
-            
-        </div>
-    </form>
+   <asp:TextBox ID="txtURL" runat="server"></asp:TextBox>
+    <asp:Button ID="btnGetHTML" runat="server" Text="获取页面HTML" OnClick="btnGetHTML_Click" />
+    <br />
+    页面HTML代码:<br />
+    <asp:TextBox ID="txtPageHTML" runat="server" Height="186px" TextMode="MultiLine"
+        Width="263px"></asp:TextBox>
+    </form> 
 </body>
 </html>
