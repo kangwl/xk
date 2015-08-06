@@ -19,6 +19,10 @@
     页面HTML代码:<br />
     <asp:TextBox ID="txtPageHTML" runat="server" Height="186px" TextMode="MultiLine"
         Width="263px"></asp:TextBox>
+        
+   <div>
+       <asp:Literal runat="server" ID="lit_html"></asp:Literal>
+   </div>
     </form> 
 </body>
 </html>

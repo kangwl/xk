@@ -33,7 +33,7 @@ namespace WebAppBS.Prox {
         }
 
         protected void btnGetHTML_Click(object sender, EventArgs e) {
-            txtPageHTML.Text = GetHTMLCode(txtURL.Text);
+            lit_html.Text = GetHTMLCode(txtURL.Text);
         }
     }
 }
