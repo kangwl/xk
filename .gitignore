@@ -113,3 +113,5 @@
 /VPNManage/obj/Debug
 /XK.Dal.Mongo/bin/Release
 /XK.MongoDBUtil/bin/Release
+/MyEdu/bin
+/MyEdu/obj/Debug
